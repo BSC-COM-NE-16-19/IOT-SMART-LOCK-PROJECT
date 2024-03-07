@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">SmartLockApp</string>
+    <string name="app_name">Lock</string>
+    <string name="engineer">© engineers 2024</string>
+    <string name="moto">Smart Lock</string>
 </resources>
