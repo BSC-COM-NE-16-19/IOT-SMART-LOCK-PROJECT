@@ -3,7 +3,12 @@
     <style name="Base.Theme.SmartLockApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="Theme.SmartLockApp" parent="Base.Theme.SmartLockApp" />
+
+
+
 </resources>
