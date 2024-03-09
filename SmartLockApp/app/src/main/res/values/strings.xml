@@ -2,4 +2,9 @@
     <string name="app_name">Lock</string>
     <string name="engineer">© engineers 2024</string>
     <string name="moto">Smart Lock</string>
+    <string name="pin">Create Security Code</string>
+    <string name="username">Enter username</string>
+    <string name="userPin">Enter code</string>
+    <string name="pinConfirm">Confirm code</string>
+    <string name="create">Create</string>
 </resources>
