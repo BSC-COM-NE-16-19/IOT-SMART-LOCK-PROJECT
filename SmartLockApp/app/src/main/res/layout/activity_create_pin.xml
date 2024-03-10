@@ -69,7 +69,7 @@
             android:paddingTop="2dp"
             android:id="@+id/code"
             android:layout_height="36dp"
-            android:inputType="number"
+            android:inputType="number|numberPassword"
             tools:ignore="Autofill" />
 
         <EditText
@@ -84,7 +84,7 @@
             android:id="@+id/confirmCode"
             android:paddingTop="2dp"
             android:layout_height="36dp"
-            android:inputType="number"
+            android:inputType="number|numberPassword"
             tools:ignore="Autofill" />
 
         <Button
