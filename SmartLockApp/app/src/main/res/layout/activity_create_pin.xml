@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="60dp"
-        android:src="@drawable/baseline_lock_24"
+        android:src="@drawable/laucher"
         android:contentDescription="@string/moto"
         android:layout_marginTop="20dp"
         android:id="@+id/smallLock"
@@ -95,7 +95,7 @@
             android:padding="5dp"
             android:id="@+id/create"
             android:textColor="@color/white"
-            android:backgroundTint="@color/black"
+            android:background="@drawable/create_button_style"
             android:layout_height="46dp"/>
 
 
