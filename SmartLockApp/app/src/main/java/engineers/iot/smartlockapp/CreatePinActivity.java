@@ -1,5 +1,6 @@
 package engineers.iot.smartlockapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +35,9 @@ public class CreatePinActivity extends AppCompatActivity {
 
     private void handleActions() {
      create.setOnClickListener(e -> {
-         Toast.makeText(this, "Pressed create button", Toast.LENGTH_SHORT).show();
+         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+         startActivity(intent);
+         finish();
      });
     }
 }
