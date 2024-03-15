@@ -18,5 +18,11 @@
     <string name="nine">9</string>
     <string name="zero">0</string>
     <string name="enterPin">Enter PIN</string>
+    <string name="authentication">Authentication</string>
+    <string name="history">History</string>
+    <string name="list">Auth list</string>
+    <string name="battery">Battery</string>
+    <string name="locked">Locked</string>
+    <string name="unlocked">Unlocked</string>
 
 </resources>
