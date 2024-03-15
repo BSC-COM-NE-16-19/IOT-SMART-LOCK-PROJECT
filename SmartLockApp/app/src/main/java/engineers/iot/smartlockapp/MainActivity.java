@@ -1,24 +1,57 @@
 package engineers.iot.smartlockapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.AppCompatRadioButton;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private ImageView lockImage;
+    private AppCompatRadioButton lock,unlock;
+    private LinearLayout battery, history, authList, authentication;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        initViews();
+
+        handleActions();
+    }
+
+    private void initViews(){
+        lockImage = findViewById(R.id.smallLock);
+        lock = findViewById(R.id.locked);
+        unlock = findViewById(R.id.unlocked);
+    }
+
+    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
+    private void handleActions(){
+
+        lock.setOnClickListener(e->{
+
+            if(lock.isChecked()){
+                lock.setText("Locked");
+                unlock.setText("Unlock");
+                lockImage.setImageResource(R.drawable.laucher);
+            }
+        });
+
+        unlock.setOnClickListener(e->{
+
+            if(unlock.isChecked()){
+                unlock.setText("Unlocked");
+                lock.setText("Lock");
+                lockImage.setImageResource(R.drawable.unlock);
+            }
         });
     }
 }
