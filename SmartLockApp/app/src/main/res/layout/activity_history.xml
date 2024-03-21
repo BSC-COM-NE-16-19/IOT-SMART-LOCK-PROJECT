@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/back"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/history"
+        android:layout_width="394dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="9dp"
+        android:src="@drawable/history"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="428dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="17dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="60dp"
+        android:text="Door Lock Access    Time   Access Status"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="6dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="309dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="#4CD964"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/history"
+        android:layout_below="@id/history"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="384dp"
+        android:layout_height="380dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="12dp"
+        android:paddingTop="350dp"
+        android:text="@string/engineer"
+        android:textAlignment="center" />
+
+
+</RelativeLayout>
