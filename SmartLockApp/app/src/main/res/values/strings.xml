@@ -24,5 +24,7 @@
     <string name="battery">Battery</string>
     <string name="locked">Locked</string>
     <string name="unlocked">Unlocked</string>
+    <string name="enrollment">Enrollment</string>
+    <string name="states">States</string>
 
 </resources>
