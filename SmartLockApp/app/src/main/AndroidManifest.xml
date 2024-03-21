@@ -13,6 +13,15 @@
         android:theme="@style/Theme.SmartLockApp"
         tools:targetApi="31">
         <activity
+            android:name=".StatesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AuthListActivity"
+            android:exported="false" />
+        <activity
             android:name=".AuthenticationActivity"
             android:exported="false" />
         <activity
