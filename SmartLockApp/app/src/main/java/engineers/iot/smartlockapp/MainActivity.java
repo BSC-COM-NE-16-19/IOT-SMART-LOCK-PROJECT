@@ -1,6 +1,7 @@
 package engineers.iot.smartlockapp;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,10 +32,19 @@ public class MainActivity extends AppCompatActivity {
         lockImage = findViewById(R.id.smallLock);
         lock = findViewById(R.id.locked);
         unlock = findViewById(R.id.unlocked);
+        history = findViewById(R.id.history);
+        authentication = findViewById(R.id.authentication);
+        authList = findViewById(R.id.list);
     }
 
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     private void handleActions(){
+
+        history.setOnClickListener(e-> goToHistoryActivity());
+
+        authList.setOnClickListener(e-> goToAuntListActivity());
+
+        authentication.setOnClickListener(e-> goToStatesActivity());
 
         lock.setOnClickListener(e->{
 
@@ -53,5 +63,19 @@ public class MainActivity extends AppCompatActivity {
                 lockImage.setImageResource(R.drawable.unlock);
             }
         });
+    }
+    private void goToHistoryActivity() {
+        Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToAuntListActivity() {
+        Intent intent = new Intent(getApplicationContext(), AuthListActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToStatesActivity() {
+        Intent intent = new Intent(getApplicationContext(), StatesActivity.class);
+        startActivity(intent);
     }
 }
