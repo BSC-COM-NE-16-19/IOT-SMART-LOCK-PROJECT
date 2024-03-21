@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/fingerprint"
+        android:layout_width="390dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/moto"
+        android:src="@drawable/fingerprint"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/back"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/states"
+        android:id="@+id/States"
+        android:layout_below="@id/fingerprint"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:text="@string/engineer"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:id="@+id/radioButtonLayout"
+        android:layout_below="@id/States"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:layout_width="330dp"
+            android:orientation="horizontal"
+            android:background="@drawable/radio_button_layout_style"
+            android:padding="2dp"
+            android:layout_height="70dp"
+            tools:ignore="UselessParent">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:text="@string/enrollment"
+                android:layout_weight="1"
+                android:id="@+id/locked"
+                android:textStyle="bold"
+                android:checked="true"
+                android:gravity="center"
+                android:background="@drawable/unlocked_radio_button_style"
+                android:button="@android:color/transparent"
+                android:layout_height="65dp"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_width="0dp"
+                android:text="@string/authentication"
+                android:id="@+id/unlocked"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/unlocked_radio_button_style"
+                android:button="@android:color/transparent"
+                android:layout_height="65dp"/>
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
