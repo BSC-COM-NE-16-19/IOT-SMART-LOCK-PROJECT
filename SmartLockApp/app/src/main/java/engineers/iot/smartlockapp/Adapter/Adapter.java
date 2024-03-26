@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,11 +35,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        holder.name.setText(userList.get(position).getFirstName());
+        holder.id.setText(userList.get(position).getId());
+
+        holder.layout.setOnClickListener(e-> Toast.makeText(context, "Pressed user: " + userList.get(position).getFirstName(), Toast.LENGTH_SHORT).show());
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return userList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
