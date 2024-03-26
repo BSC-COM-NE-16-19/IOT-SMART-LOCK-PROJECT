@@ -36,7 +36,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.name.setText(userList.get(position).getFirstName());
-        holder.id.setText(userList.get(position).getId());
+        holder.id.setText(String.valueOf(userList.get(position).getId()));
 
         holder.layout.setOnClickListener(e-> Toast.makeText(context, "Pressed user: " + userList.get(position).getFirstName(), Toast.LENGTH_SHORT).show());
 
