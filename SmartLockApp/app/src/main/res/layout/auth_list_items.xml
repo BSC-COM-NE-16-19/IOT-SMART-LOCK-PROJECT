@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:paddingTop="3dp"
+    android:id="@+id/layout"
     android:paddingBottom="3dp"
     android:layout_height="wrap_content">
 
