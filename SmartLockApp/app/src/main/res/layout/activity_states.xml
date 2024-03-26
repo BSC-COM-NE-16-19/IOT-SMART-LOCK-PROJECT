@@ -10,23 +10,21 @@
 
     <ImageView
         android:id="@+id/fingerprint"
-        android:layout_width="390dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="16dp"
+        android:layout_centerInParent="true"
         android:contentDescription="@string/moto"
         android:src="@drawable/fingerprint"
-        tools:layout_editor_absoluteY="93dp" />
+         />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/back"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="1dp"
         android:id="@+id/back"
         tools:ignore="ContentDescription" />
 
@@ -36,9 +34,10 @@
         android:layout_centerInParent="true"
         android:text="@string/states"
         android:id="@+id/States"
+        android:textColor="@color/black"
         android:layout_below="@id/fingerprint"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textSize="16sp"
+         />
 
     <TextView
         android:layout_width="match_parent"
@@ -59,7 +58,7 @@
         android:layout_height="wrap_content">
 
         <RadioGroup
-            android:layout_width="330dp"
+            android:layout_width="300dp"
             android:orientation="horizontal"
             android:background="@drawable/radio_button_layout_style"
             android:padding="2dp"
