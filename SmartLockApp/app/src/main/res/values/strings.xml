@@ -30,5 +30,13 @@
     <string name="id">ID</string>
     <string name="time">Time</string>
     <string name="status">Status</string>
+    <string name="update">Update user details</string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_surname">Enter surname</string>
+    <string name="access_status">Access status</string>
+    <string name="access">ACCESS</string>
+    <string name="deny">DENY</string>
+    <string name="cancel">CANCEL</string>
+    <string name="update_button">UPDATE</string>
 
 </resources>
