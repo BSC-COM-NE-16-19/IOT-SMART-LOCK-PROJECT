@@ -38,7 +38,7 @@ public class AuthListActivity extends AppCompatActivity {
 
         getUserData();
 
-        recycleViewAdapter = new Adapter(getApplicationContext(),userList);
+        recycleViewAdapter = new Adapter(this,userList);
         recyclerView.setAdapter(recycleViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
     }
