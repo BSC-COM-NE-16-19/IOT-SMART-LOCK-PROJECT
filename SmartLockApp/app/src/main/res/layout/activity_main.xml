@@ -9,12 +9,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/more"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/baseline_more_vert_24"
+        tools:ignore="ContentDescription" />
+
 
     <ImageView
         android:layout_width="80dp"
         android:src="@drawable/laucher"
         android:contentDescription="@string/moto"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/smallLock"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
