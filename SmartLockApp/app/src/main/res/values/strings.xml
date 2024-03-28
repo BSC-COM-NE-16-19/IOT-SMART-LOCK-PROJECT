@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Lock</string>
     <string name="engineer">© engineers 2024</string>
     <string name="moto">Smart Lock</string>
@@ -36,7 +36,7 @@
     <string name="access_status">Access status</string>
     <string name="access">ACCESS</string>
     <string name="deny">DENY</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="update_button">UPDATE</string>
 
 </resources>
