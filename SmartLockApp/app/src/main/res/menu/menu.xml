@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/changePassword"
+          android:title="@string/change_password"
+        />
+
+    <item android:id="@+id/addMobileNumber"
+        android:title="@string/add_mobile_number"
+        />
+
 </menu>
