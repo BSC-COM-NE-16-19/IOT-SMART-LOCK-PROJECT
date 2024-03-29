@@ -3,17 +3,21 @@ package engineers.iot.smartlockapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.appcompat.widget.PopupMenu;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView lockImage;
+    private ImageView lockImage,more;
     private AppCompatRadioButton lock,unlock;
     private LinearLayout battery, history, authList, authentication;
 
@@ -28,6 +32,28 @@ public class MainActivity extends AppCompatActivity {
         handleActions();
     }
 
+
+    private void showPopupMenu() {
+        PopupMenu popupMenu = new PopupMenu(this,more);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.menu,popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(this::onItemMenuListener);
+        popupMenu.show();
+
+    }
+
+    private boolean onItemMenuListener(MenuItem item) {
+
+        if(item.getItemId() == R.id.addMobileNumber) {
+            Toast.makeText(this, "Clicked add mobile number", Toast.LENGTH_SHORT).show();
+        } else if(item.getItemId() == R.id.changePassword) {
+            Toast.makeText(this, "Clicked change password", Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
+    }
+
     private void initViews(){
         lockImage = findViewById(R.id.smallLock);
         lock = findViewById(R.id.locked);
@@ -35,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         history = findViewById(R.id.history);
         authentication = findViewById(R.id.authentication);
         authList = findViewById(R.id.list);
+        more = findViewById(R.id.more);
     }
 
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
@@ -45,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         authList.setOnClickListener(e-> goToAuntListActivity());
 
         authentication.setOnClickListener(e-> goToStatesActivity());
+
+        more.setOnClickListener(e-> showPopupMenu());
 
         lock.setOnClickListener(e->{
 
