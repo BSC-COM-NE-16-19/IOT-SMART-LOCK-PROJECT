@@ -6,6 +6,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,6 +26,12 @@ import engineers.iot.smartlockapp.R;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private final Context context;
     private Dialog dialog;
+
+    private EditText fName, surname;
+
+    private Button cancel, update;
+
+    private RadioButton access, deny;
     private final ArrayList<User> userList;
     public Adapter(Context context,ArrayList<User> userList){
         this.context = context;
@@ -45,15 +54,51 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.id.setText(String.valueOf(userList.get(position).getId()));
 
         holder.layout.setOnClickListener(e-> {
-            dialog = new Dialog(context);
-            dialog.setContentView(R.layout.update_user_dialog_box);
-            Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-            dialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.white_card_view_style));
+            initViews();
+
+            handleActions();
+
+            setEditViewText(userList.get(position).getFirstName(),userList.get(position).getLastName());
+
+
+
+
             dialog.show();
 
 
         });
 
+    }
+
+    private void updateUserDetails(String fName, String surname, boolean status) {
+
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void initViews(){
+
+        dialog = new Dialog(context);
+        dialog.setContentView(R.layout.update_user_dialog_box);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.white_card_view_style));
+        dialog.setCancelable(false);
+
+        fName = dialog.findViewById(R.id.fName);
+        surname = dialog.findViewById(R.id.surname);
+        access = dialog.findViewById(R.id.accessR);
+        deny = dialog.findViewById(R.id.denyR);
+        cancel = dialog.findViewById(R.id.cancel);
+        update = dialog.findViewById(R.id.update);
+
+    }
+
+    private void handleActions(){
+        cancel.setOnClickListener(e-> dialog.dismiss());
+    }
+
+    private void setEditViewText(String fName, String surname) {
+        this.fName.setText(fName);
+        this.surname.setText(surname);
     }
 
     @Override
