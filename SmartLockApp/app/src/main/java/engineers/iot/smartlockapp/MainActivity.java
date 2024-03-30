@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView lockImage,more;
     private AppCompatRadioButton lock,unlock;
+    private TextView live;
     private LinearLayout battery, history, authList, authentication;
 
 
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews(){
+        live = findViewById(R.id.live);
         lockImage = findViewById(R.id.smallLock);
         lock = findViewById(R.id.locked);
         unlock = findViewById(R.id.unlocked);
@@ -74,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         authentication.setOnClickListener(e-> goToStatesActivity());
 
         more.setOnClickListener(e-> showPopupMenu());
+
+        live.setOnClickListener(e-> Toast.makeText(this, "LIVE Pressed", Toast.LENGTH_SHORT).show());
 
         lock.setOnClickListener(e->{
 
