@@ -1,7 +1,10 @@
 package engineers.iot.smartlockapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.net.ConnectivityManagerCompat;
 
 import engineers.iot.smartlockapp.Model.Client;
 
@@ -105,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
                 lockImage.setImageResource(R.drawable.unlock);
             }
         });
+    }
+    private boolean isWifiConnected() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        assert wifiInfo != null;
+        return wifiInfo.isConnected();
     }
     private void goToHistoryActivity() {
         Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
