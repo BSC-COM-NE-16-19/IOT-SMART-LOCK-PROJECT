@@ -11,11 +11,11 @@
 
     <TextView
         android:id="@+id/live"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/live_style"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
@@ -26,7 +26,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:id="@+id/more"
         android:layout_alignParentEnd="true"
@@ -38,7 +38,7 @@
         android:layout_width="80dp"
         android:src="@drawable/laucher"
         android:contentDescription="@string/moto"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/smallLock"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
