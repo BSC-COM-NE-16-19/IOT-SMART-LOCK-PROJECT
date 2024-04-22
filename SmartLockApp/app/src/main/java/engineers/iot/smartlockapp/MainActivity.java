@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.PopupMenu;
 
+import engineers.iot.smartlockapp.Model.Client;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView live;
     private LinearLayout battery, history, authList, authentication;
 
+    private final static String URL = "esp32_board.local";
+
+    private final static int PORT = 8000;
+
+    private Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         authentication = findViewById(R.id.authentication);
         authList = findViewById(R.id.list);
         more = findViewById(R.id.more);
+        client = new Client();
     }
 
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
