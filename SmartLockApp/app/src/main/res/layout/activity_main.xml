@@ -173,6 +173,7 @@
          android:orientation="horizontal"
          android:background="@drawable/radio_button_layout_style"
          android:padding="2dp"
+         android:id="@+id/radioGroup"
          android:layout_height="39dp"
          tools:ignore="UselessParent">
 
