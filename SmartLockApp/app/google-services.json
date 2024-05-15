@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1018074200511",
+    "firebase_url": "https://test-c2c3c-default-rtdb.firebaseio.com",
+    "project_id": "test-c2c3c",
+    "storage_bucket": "test-c2c3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018074200511:android:05d551a370271a0ae0c90a",
+        "android_client_info": {
+          "package_name": "engineers.iot.smartlockapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY3hcHbyt09bAwZPeDcpHINjukUbyTE9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
