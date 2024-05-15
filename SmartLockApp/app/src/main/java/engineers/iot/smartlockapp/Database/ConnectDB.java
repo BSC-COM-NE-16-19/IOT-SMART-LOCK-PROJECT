@@ -1,14 +1,18 @@
 package engineers.iot.smartlockapp.Database;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ConnectDB {
 
-    protected static String db = "dbName";
-    protected static String ip = "";
-    protected static String port = "";
-    protected static String username = "";
-    protected static String password = "";
+    private final DatabaseReference databaseReference;
 
+   public ConnectDB(String path) {
+       FirebaseDatabase database = FirebaseDatabase.getInstance();
+       databaseReference = database.getReference(path);
+   }
 
-
-
+    public DatabaseReference getDatabaseReference() {
+        return databaseReference;
+    }
 }
