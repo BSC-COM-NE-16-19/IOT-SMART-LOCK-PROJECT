@@ -1,10 +1,7 @@
 package engineers.iot.smartlockapp;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,11 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.PopupMenu;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import engineers.iot.smartlockapp.Database.ConnectDB;
-import engineers.iot.smartlockapp.Model.Client;
+
 
 
 public class MainActivity extends AppCompatActivity {
