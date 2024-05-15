@@ -69,7 +69,7 @@
                 android:layout_width="0dp"
                 android:text="@string/enrollment"
                 android:layout_weight="1"
-                android:id="@+id/locked"
+                android:id="@+id/enrollment"
                 android:textStyle="bold"
                 android:checked="true"
                 android:gravity="center"
@@ -80,7 +80,7 @@
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:layout_width="0dp"
                 android:text="@string/authentication"
-                android:id="@+id/unlocked"
+                android:id="@+id/authentication"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:gravity="center"
