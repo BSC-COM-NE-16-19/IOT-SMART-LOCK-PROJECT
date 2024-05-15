@@ -17,8 +17,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.core.net.ConnectivityManagerCompat;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import engineers.iot.smartlockapp.Database.ConnectDB;
 import engineers.iot.smartlockapp.Model.Client;
 
 
@@ -29,11 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView live;
     private LinearLayout battery, history, authList, authentication;
 
-    private final static String URL = "esp32_board.local";
-
-    private final static int PORT = 8000;
-
-    private Client client;
+    private ConnectDB database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         authentication = findViewById(R.id.authentication);
         authList = findViewById(R.id.list);
         more = findViewById(R.id.more);
-        client = new Client();
+        database = new ConnectDB("STATUS");
     }
 
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
@@ -94,28 +93,29 @@ public class MainActivity extends AppCompatActivity {
 
         lock.setOnClickListener(e->{
 
-            if(lock.isChecked()){
-                lock.setText("Locked");
-                unlock.setText("Unlock");
-                lockImage.setImageResource(R.drawable.laucher);
-            }
+                     if(lock.isChecked()){
+                         database.getDatabaseReference().child("lockStatus").setValue("Locked");
+                         lock.setText("Locked");
+                         unlock.setText("Unlock");
+                         lockImage.setImageResource(R.drawable.laucher);
+                     }
+
+
         });
 
         unlock.setOnClickListener(e->{
 
-            if(unlock.isChecked()){
-                unlock.setText("Unlocked");
-                lock.setText("Lock");
-                lockImage.setImageResource(R.drawable.unlock);
-            }
+                    if(unlock.isChecked()){
+                        database.getDatabaseReference().child("lockStatus").setValue("Unlocked");
+                        unlock.setText("Unlocked");
+                        lock.setText("Lock");
+                        lockImage.setImageResource(R.drawable.unlock);
+                    }
+
         });
     }
-    private boolean isWifiConnected() {
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        assert wifiInfo != null;
-        return wifiInfo.isConnected();
-    }
+
+
     private void goToHistoryActivity() {
         Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
         startActivity(intent);
