@@ -1,5 +1,6 @@
 package engineers.iot.smartlockapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,5 +38,10 @@ public class AuthenticationActivity extends AppCompatActivity {
         eight = findViewById(R.id.eight);
         nine = findViewById(R.id.nine);
         zero = findViewById(R.id.zero);
+    }
+
+    private void goToMainActivity() {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }
