@@ -17,14 +17,50 @@
         android:layout_alignParentTop="true"
         android:layout_height="60dp"/>
 
+
     <TextView
         android:layout_width="match_parent"
         android:text="@string/moto"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="13sp"
+        android:id="@+id/text"
         android:layout_below="@+id/smallLock"
         android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/linear"
+        android:layout_below="@+id/text"
+        android:layout_marginTop="15dp"
+        tools:ignore="UselessLeaf">
+
+        <EditText
+            android:layout_width="173dp"
+            android:layout_height="50dp"
+            android:id="@+id/editPass"
+            android:hint="@string/enter_security_code"
+            android:padding="10dp"
+            android:background="@drawable/update_user_edit_text_style"
+            android:inputType="numberPassword"
+            android:importantForAutofill="no"
+            android:focusable="true"
+            tools:ignore="Autofill,LabelFor" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="49dp"
+            android:background="@drawable/image_button_style"
+            android:layout_marginStart="10dp"
+            android:id="@+id/auth"
+            android:src="@drawable/baseline_arrow_forward_24"
+            tools:ignore="ContentDescription" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="250dp"
@@ -32,18 +68,11 @@
         android:orientation="vertical"
         android:padding="20dp"
         android:gravity="center"
+        android:layout_below="@+id/linear"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:background="@drawable/linear_layout_style"
         android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="@string/enterPin"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"/>
 
         <GridLayout
             android:layout_width="wrap_content"
