@@ -23,11 +23,14 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         initViews();
 
+        handleActions();
+
     }
 
     private void initViews() {
         login = findViewById(R.id.authB);
         password = findViewById(R.id.editPass);
+        password.setFocusable(true);
         one = findViewById(R.id.one);
         two = findViewById(R.id.two);
         three= findViewById(R.id.three);
@@ -43,5 +46,35 @@ public class AuthenticationActivity extends AppCompatActivity {
     private void goToMainActivity() {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+        finish();
+    }
+    private void handleActions() {
+        login.setOnClickListener(e-> goToMainActivity());
+
+        one.setOnClickListener(e->addCharacterToEditView(one));
+
+        two.setOnClickListener(e-> addCharacterToEditView(two));
+
+        three.setOnClickListener(e-> addCharacterToEditView(three));
+
+        four.setOnClickListener(e-> addCharacterToEditView(four));
+
+        five.setOnClickListener(e-> addCharacterToEditView(five));
+
+        six.setOnClickListener(e-> addCharacterToEditView(six));
+
+        seven.setOnClickListener(e-> addCharacterToEditView(seven));
+
+        eight.setOnClickListener(e-> addCharacterToEditView(eight));
+
+        nine.setOnClickListener(e-> addCharacterToEditView(nine));
+
+        zero.setOnClickListener(e-> addCharacterToEditView(zero));
+    }
+    private void addCharacterToEditView(Button button) {
+        String pass = password.getText().toString();
+        pass += button.getText().toString();
+        password.setText(pass);
+        password.setSelection(pass.length());
     }
 }
