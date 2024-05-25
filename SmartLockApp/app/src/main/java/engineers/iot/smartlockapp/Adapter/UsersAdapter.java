@@ -2,7 +2,6 @@ package engineers.iot.smartlockapp.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +16,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+
 import java.util.Objects;
 
 import engineers.iot.smartlockapp.Model.User;
 import engineers.iot.smartlockapp.R;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
-    private final Context context;
+public class UsersAdapter extends FirebaseRecyclerAdapter<User,UsersAdapter.ViewHolder> {
+
     private Dialog dialog;
 
     private EditText fName, surname;
@@ -32,55 +33,54 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private Button cancel, update;
 
     private RadioButton access, deny;
-    private final ArrayList<User> userList;
-    public Adapter(Context context,ArrayList<User> userList){
-        this.context = context;
-        this.userList = userList;
+
+    public UsersAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
+        super(options);
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.auth_list_items,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.auth_list_items,parent,false);
         return new ViewHolder(view);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull User user) {
+        viewHolder.name.setText(user.getfName());
+        viewHolder.id.setText(user.getSurname());
 
-        holder.name.setText(userList.get(position).getFirstName());
-        holder.id.setText(String.valueOf(userList.get(position).getId()));
+        viewHolder.layout.setOnClickListener(e-> {
+                initViews(viewHolder);
 
-        holder.layout.setOnClickListener(e-> {
-            initViews();
+                 handleActions();
 
-            handleActions();
+                 setEditViewText(user.getfName(),user.getSurname());
 
-            setEditViewText(userList.get(position).getFirstName(),userList.get(position).getLastName());
+                 if(user.getPermission().equals("access")) {
+                     access.setChecked(true);
+                     deny.setChecked(false);
+                 } else if(user.getPermission().equals("deny")) {
+                     deny.setChecked(true);
+                     access.setChecked(false);
+                 }
 
-
-
-
-            dialog.show();
-
-
+        dialog.show();
         });
-
     }
 
-    private void updateUserDetails(String fName, String surname, boolean status) {
+    private void updateUserDetails(String fName, String surname, String permission) {
 
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void initViews(){
+    private void initViews(ViewHolder view){
 
-        dialog = new Dialog(context);
+        dialog = new Dialog(view.itemView.getContext());
         dialog.setContentView(R.layout.update_user_dialog_box);
         Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(context.getDrawable(R.drawable.white_card_view_style));
+        dialog.getWindow().setBackgroundDrawable(view.itemView.getContext().getDrawable(R.drawable.white_card_view_style));
         dialog.setCancelable(false);
 
         fName = dialog.findViewById(R.id.fName);
@@ -101,10 +101,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         this.surname.setText(surname);
     }
 
-    @Override
-    public int getItemCount() {
-        return userList.size();
-    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
