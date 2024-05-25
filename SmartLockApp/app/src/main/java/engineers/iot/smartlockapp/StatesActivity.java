@@ -1,6 +1,7 @@
 package engineers.iot.smartlockapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 
@@ -32,6 +33,22 @@ public class StatesActivity extends AppCompatActivity {
         database = new ConnectDB("STATUS");
         auth = findViewById(R.id.authentication);
         enroll = findViewById(R.id.enrollment);
+
+        database.getDatabaseReference().child("sensorStatus").get().addOnCompleteListener(task -> {
+
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            }
+            else {
+               String sensorState = String.valueOf(task.getResult().getValue());
+               if(sensorState.equals("Enrollment")) {
+                   enroll.setChecked(true);
+               } else if(sensorState.equals("Authentication")) {
+                   auth.setChecked(true);
+               }
+            }
+        });
+
     }
 
     private void handleActions() {
