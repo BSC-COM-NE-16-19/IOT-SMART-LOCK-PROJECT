@@ -2,7 +2,6 @@ package engineers.iot.smartlockapp.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
@@ -67,19 +64,11 @@ public class UsersAdapter extends FirebaseRecyclerAdapter<User,UsersAdapter.View
                 builder.setMessage("Deleted data can't be Undo.");
                 builder.setCancelable(false);
 
-                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("USER")
-                                .child(Objects.requireNonNull(getRef(position).getKey())).removeValue();
-                    }
-                });
+                builder.setPositiveButton("Delete", (dialogInterface, i1) -> FirebaseDatabase.getInstance().getReference().child("USER")
+                        .child(Objects.requireNonNull(getRef(position).getKey())).removeValue());
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                builder.setNegativeButton("Cancel", (dialogInterface, i12) -> {
 
-                    }
                 });
             builder.show();
                 return true;
@@ -103,19 +92,11 @@ public class UsersAdapter extends FirebaseRecyclerAdapter<User,UsersAdapter.View
                      }
                      FirebaseDatabase.getInstance().getReference().child("USER")
                              .child(Objects.requireNonNull(getRef(i).getKey())).updateChildren(map)
-                             .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                 @Override
-                                 public void onSuccess(Void unused) {
-                                     Toast.makeText(viewHolder.name.getContext(), "User updated successfully", Toast.LENGTH_SHORT).show();
-                                     dialog.dismiss();
-                                 }
+                             .addOnSuccessListener(unused -> {
+                                 Toast.makeText(viewHolder.name.getContext(), "User updated successfully", Toast.LENGTH_SHORT).show();
+                                 dialog.dismiss();
                              })
-                             .addOnFailureListener(new OnFailureListener() {
-                                 @Override
-                                 public void onFailure(@NonNull Exception e) {
-                                     Toast.makeText(viewHolder.name.getContext(), "Error on updating user", Toast.LENGTH_SHORT).show();
-                                 }
-                             });
+                             .addOnFailureListener(e1 -> Toast.makeText(viewHolder.name.getContext(), "Error on updating user", Toast.LENGTH_SHORT).show());
                  });
 
                  setEditViewText(user.getfName(),user.getSurname());
@@ -130,10 +111,6 @@ public class UsersAdapter extends FirebaseRecyclerAdapter<User,UsersAdapter.View
 
         dialog.show();
         });
-    }
-
-    private void updateUserDetails(String fName, String surname, String permission) {
-
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
