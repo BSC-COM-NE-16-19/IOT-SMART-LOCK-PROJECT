@@ -8,18 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-import engineers.iot.smartlockapp.Adapter.Adapter;
+
+import engineers.iot.smartlockapp.Adapter.UsersAdapter;
+import engineers.iot.smartlockapp.Database.ConnectDB;
 import engineers.iot.smartlockapp.Model.User;
 
 
 public class AuthListActivity extends AppCompatActivity {
 
     private ImageView back;
-    private RecyclerView recyclerView;
-    private Adapter recycleViewAdapter;
-    private ArrayList<User> userList;
+    private UsersAdapter recycleViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,25 +33,36 @@ public class AuthListActivity extends AppCompatActivity {
 
     private void initViews() {
         back = findViewById(R.id.back);
-        recyclerView = findViewById(R.id.recycleView);
-        userList = new ArrayList<>();
+        RecyclerView recyclerView = findViewById(R.id.recycleView);
+        ConnectDB database = new ConnectDB("USER");
 
-        getUserData();
 
-        recycleViewAdapter = new Adapter(this,userList);
-        recyclerView.setAdapter(recycleViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
+
+        FirebaseRecyclerOptions<User> options =
+                new FirebaseRecyclerOptions.Builder<User>()
+                        .setQuery(database.getDatabaseReference(), User.class)
+                        .build();
+
+
+        recycleViewAdapter = new UsersAdapter(options);
+        recyclerView.setAdapter(recycleViewAdapter);
     }
 
-    private void getUserData() {
-        userList.add(new User("Godbless"," ", 49869));
-        userList.add(new User("Blessing"," ", 59598));
-        userList.add(new User("Moddy"," ", 48585));
-        userList.add(new User("Dr. Kim"," ", 57876));
-    }
 
     private  void handEvents(){
         back.setOnClickListener(e-> onBackPressed());
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recycleViewAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        recycleViewAdapter.stopListening();
+    }
 }
