@@ -7,6 +7,9 @@
 #include <addons/TokenHelper.h>
 #include <addons/RTDBHelper.h>
 
+#define API_KEY ""
+#define DATABASE_URL ""
+
 void setup() {
 
 }
