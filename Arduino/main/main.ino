@@ -10,6 +10,18 @@
 #define API_KEY ""
 #define DATABASE_URL ""
 
+#define pin 2
+
+FingerPrint fingerPrint = FingerPrint();
+
+FirebaseData fbData, fbStream1, fbStream2;
+FirebaseAuth auth;
+FirebaseConfig config;
+
+bool signOk = false;
+
+String lockStatus, sensorState;
+
 void setup() {
 
 }
