@@ -1,36 +1,39 @@
 package engineers.iot.smartlockapp.Model;
 
 public class User {
-    private String firstName, lastName;
-    private int id;
+    private String fName, surname,permission;
 
-    public User(String firstName, String lastName, int id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.id = id;
+    public User() {
+
     }
 
-    public String getFirstName() {
-        return firstName;
+    public User(String firstName, String lastName, String permission) {
+        this.fName = firstName;
+        this.surname = lastName;
+        this.permission = permission;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getPermission() {
+        return permission;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getfName() {
+        return fName;
     }
 
-    public int getId() {
-        return id;
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }
