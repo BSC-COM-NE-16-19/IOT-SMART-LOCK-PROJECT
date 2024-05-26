@@ -130,7 +130,62 @@ void connectToNetwork() {
 }
 
 void readDataFromFirebase() {
-  
+
+  if(Firebase.ready() && signOk) {
+      if(!Firebase.RTDB.readStream(&fbStream1))
+        Serial.printf("Stream 1 error %s\n\n", fbStream1.errorReason().c_str());
+      if(fbStream1.streamAvailable()){
+        if(fbStream1.dataType() == "string") {
+          lockStatus = fbStream1.stringData();
+          Serial.println("SUCCESSFULLY READ FROM " + fbStream1.dataPath() + ": " + lockStatus + " (" + fbStream1.dataType() + ")");
+
+          if(lockStatus == "Locked" ) {
+
+            digitalWrite(pin,LOW);
+            Serial.println("LOCKED");
+            fingerPrint.getLcd().clear();
+            fingerPrint.getLcd().backlight();
+            fingerPrint.getLcd().print("     LOCKED");
+            fingerPrint.getLcd().backlight();
+
+          } else if(lockStatus == "Unlocked" ) {
+
+            digitalWrite(pin,HIGH);
+            Serial.println("UNLOCKED");
+            fingerPrint.getLcd().clear();
+            fingerPrint.getLcd().backlight();
+            fingerPrint.getLcd().print("     UNLOCKED");
+            fingerPrint.getLcd().backlight();
+
+          }
+        
+        
+        }
+      } 
+
+      if(!Firebase.RTDB.readStream(&fbStream2))
+        Serial.printf("Stream 1 error %s\n\n", fbStream2.errorReason().c_str());
+      if(fbStream2.streamAvailable()){
+        if(fbStream1.dataType() == "string") {
+          sensorState = fbStream2.stringData();
+          Serial.println("SUCCESSFULLY READ FROM " + fbStream2.dataPath() + ": " + sensorState + " (" + fbStream2.dataType() + ")");
+
+          if(sensorState == "Enrollment") {
+
+            fingerPrint.setEnrollment(true);
+            fingerPrint.setAuthentication(false);
+
+          } else if(sensorState == "Authentication") {
+
+            fingerPrint.setEnrollment(false);
+            fingerPrint.setAuthentication(true);
+
+          } 
+
+
+        }
+      } 
+  }
 }
 
 
