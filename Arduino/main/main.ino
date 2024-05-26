@@ -22,6 +22,8 @@ bool signOk = false;
 
 String lockStatus, sensorState;
 
+int DELAY = 2000;
+
 void setup() {
 
 }
@@ -29,3 +31,8 @@ void setup() {
 void loop() {
 
 }
+
+
+
+
+
