@@ -69,6 +69,65 @@ void connectToNetwork() {
      res = wm.autoConnect("SmartLock","12345678");
      fingerPrint.getLcd().backlight();
 
+      if(!res) {
+        Serial.println("Failed to connect");
+        fingerPrint.getLcd().clear(); 
+        fingerPrint.getLcd().backlight();
+        fingerPrint.getLcd().print("CONNECTION FAILED");
+        fingerPrint.getLcd().backlight();
+        delay(DELAY);
+    } else {   
+        Serial.println("connected to WIFI");
+        fingerPrint.getLcd().clear(); 
+        fingerPrint.getLcd().backlight();
+        fingerPrint.getLcd().print("CONNECTED TO");
+        fingerPrint.getLcd().setCursor(0,1);
+        fingerPrint.getLcd().print(""+ WiFi.SSID());
+        fingerPrint.getLcd().backlight();
+        delay(DELAY);
+
+        fingerPrint.getLcd().clear(); 
+        fingerPrint.getLcd().backlight();
+        fingerPrint.getLcd().print("CONNECTED TO");
+        fingerPrint.getLcd().setCursor(0,1);
+        fingerPrint.getLcd().print("DATABASE");
+        fingerPrint.getLcd().backlight();
+        delay(DELAY);
+
+
+        config.api_key = API_KEY;
+        config.database_url = DATABASE_URL;
+
+        if(Firebase.signUp(&config, &auth,"","")) {
+          Serial.println("Signup OK");
+          signOk = true;
+        fingerPrint.getLcd().clear(); 
+        fingerPrint.getLcd().backlight();
+        fingerPrint.getLcd().print("   CONNECTED");
+        fingerPrint.getLcd().backlight();
+        delay(DELAY);
+        } else {
+          Serial.printf("%s\n", config.signer.signupError.message.c_str());
+        fingerPrint.getLcd().clear(); 
+        fingerPrint.getLcd().backlight();
+        fingerPrint.getLcd().print("   FAILED");
+        fingerPrint.getLcd().backlight();
+        delay(DELAY);
+        }
+
+
+        Firebase.begin(&config, &auth);
+        Firebase.reconnectWiFi(true);
+
+        fingerPrint.initializeFingerprint();
+
+        if(!Firebase.RTDB.beginStream(&fbStream1, "/STATUS/lockStatus"))
+        Serial.printf("Stream 1 error %s\n\n", fbStream1.errorReason().c_str());
+
+        if(!Firebase.RTDB.beginStream(&fbStream2, "/STATUS/sensorStatus"))
+        Serial.printf("Stream 2 error %s\n\n", fbStream2.errorReason().c_str());     
+    } 
+
 }
 
 
