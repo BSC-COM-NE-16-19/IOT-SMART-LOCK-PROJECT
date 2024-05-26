@@ -26,15 +26,34 @@ int DELAY = 2000;
 
 void setup() {
 
+   // initializing lcd display
     fingerPrint.getLcd().begin();
     fingerPrint.getLcd().display();
     fingerPrint.getLcd().clear();
     fingerPrint.getLcd().backlight();
 
+    // displaying system startup 
+    fingerPrint.getLcd().print("SYSTEM STARTING");
+    fingerPrint.getLcd().backlight();
+    delay(DELAY);
+    
+    // connecting to the network 
+    fingerPrint.getLcd().clear(); 
+    fingerPrint.getLcd().backlight();
+    fingerPrint.getLcd().print("CONNECT TO A");
+    fingerPrint.getLcd().setCursor(0,1);
+    fingerPrint.getLcd().print("NETWORK");
+    fingerPrint.getLcd().backlight();
+    delay(DELAY);
+
 }
 
 void loop() {
 
+}
+
+void connectToNetwork() {
+  
 }
 
 
