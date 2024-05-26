@@ -46,12 +46,30 @@ void setup() {
     fingerPrint.getLcd().backlight();
     delay(DELAY);
 
+    connectToNetwork();
+
 }
 
 void loop() {
 
+    // enrolling fingerprints
+  if(fingerPrint.getEnrollment() == true && fingerPrint.getAuthentication() == false) {
+       fingerPrint.readyToEnroll();
+  } 
+  // authentication and verification of fingerprints 
+  else if(fingerPrint.getEnrollment() == false && fingerPrint.getAuthentication() == true) {
+    fingerPrint.getFingerprintID();
+    delay(50);
+  }
+
+  readDataFromFirebase();
+
 }
 
+/* connecting to WIFI and initializing fingerprint sensor
+ * connecting to firebase and signing in to the firebase 
+ * initializing stream for firebase 
+ */
 void connectToNetwork() {
 
    
@@ -129,6 +147,7 @@ void connectToNetwork() {
     } 
 }
 
+// reading data in firebase on Data change only
 void readDataFromFirebase() {
 
   if(Firebase.ready() && signOk) {
