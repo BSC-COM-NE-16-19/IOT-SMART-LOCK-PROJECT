@@ -127,7 +127,10 @@ void connectToNetwork() {
         if(!Firebase.RTDB.beginStream(&fbStream2, "/STATUS/sensorStatus"))
         Serial.printf("Stream 2 error %s\n\n", fbStream2.errorReason().c_str());     
     } 
+}
 
+void readDataFromFirebase() {
+  
 }
 
 
