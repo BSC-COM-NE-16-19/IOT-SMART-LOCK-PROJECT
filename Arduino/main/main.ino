@@ -53,7 +53,22 @@ void loop() {
 }
 
 void connectToNetwork() {
+
+   
+  pinMode(pin, OUTPUT);
+ // making the esp32 act as a wifi client 
+  WiFi.mode(WIFI_STA);
+
+    Serial.begin(9500);
+   
+   // wifi manager for providing ssid and password to the system
+    WiFiManager wm;
   
+  // changing the mode of esp32 module to turn to an access point  
+    bool res;
+     res = wm.autoConnect("SmartLock","12345678");
+     fingerPrint.getLcd().backlight();
+
 }
 
 
