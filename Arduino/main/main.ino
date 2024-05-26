@@ -26,6 +26,11 @@ int DELAY = 2000;
 
 void setup() {
 
+    fingerPrint.getLcd().begin();
+    fingerPrint.getLcd().display();
+    fingerPrint.getLcd().clear();
+    fingerPrint.getLcd().backlight();
+
 }
 
 void loop() {
