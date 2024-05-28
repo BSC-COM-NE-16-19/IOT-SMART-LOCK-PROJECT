@@ -20,7 +20,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_alignParentEnd="true"
-        android:text="@string/id"
+        android:text="@string/permission"
         android:id="@+id/id"
         android:textColor="@color/black"
         android:textSize="16sp"

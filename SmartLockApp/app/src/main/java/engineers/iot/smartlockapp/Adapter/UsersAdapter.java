@@ -2,6 +2,7 @@ package engineers.iot.smartlockapp.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +51,16 @@ public class UsersAdapter extends FirebaseRecyclerAdapter<User,UsersAdapter.View
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder viewHolder, @SuppressLint("RecyclerView") int i, @NonNull User user) {
-        viewHolder.name.setText(user.getfName());
-        viewHolder.id.setText(user.getSurname());
+        viewHolder.name.setText(user.getfName() + " " + user.getSurname());
+        if(user.getPermission().equals("access")){
+            viewHolder.id.setTextColor(Color.GREEN);
+        } else if (user.getPermission().equals("deny")) {
+            viewHolder.id.setTextColor(Color.RED);
+        }
+        viewHolder.id.setText(user.getPermission());
 
         viewHolder.layout.setOnLongClickListener(new View.OnLongClickListener() {
             final int position = i;

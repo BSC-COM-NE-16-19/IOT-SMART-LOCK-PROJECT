@@ -27,7 +27,7 @@
     <string name="enrollment">Enrollment</string>
     <string name="states">States</string>
     <string name="name">Name</string>
-    <string name="id">ID</string>
+    <string name="permission">Permission</string>
     <string name="time">Time</string>
     <string name="status">Status</string>
     <string name="update">Update user details</string>
