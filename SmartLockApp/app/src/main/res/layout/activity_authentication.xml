@@ -38,18 +38,15 @@
         android:layout_marginTop="15dp"
         tools:ignore="UselessLeaf">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="173dp"
             android:layout_height="50dp"
             android:id="@+id/editPass"
             android:hint="@string/enter_security_code"
             android:padding="10dp"
             android:background="@drawable/update_user_edit_text_style"
-            android:inputType="numberPassword|textVisiblePassword"
-            android:importantForAutofill="no"
-            android:focusable="true"
-            tools:ignore="Autofill,LabelFor" />
-
+            android:inputType="numberPassword"
+            />
 
         <ImageButton
             android:layout_width="60dp"

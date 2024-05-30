@@ -98,6 +98,18 @@
             android:background="@drawable/create_button_style"
             android:layout_height="46dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/already_have_a_code"
+            android:textAlignment="center"
+            android:layout_marginTop="6dp"
+            android:id="@+id/already"
+            android:textStyle="bold"
+            android:textColor="#3E56EF"
+            android:textSize="16sp"
+            />
+
 
 
 

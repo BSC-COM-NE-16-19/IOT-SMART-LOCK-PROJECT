@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CreatePinActivity extends AppCompatActivity {
 
     private EditText username, pinCode, confirmCode;
+
+    private TextView already;
     private Button create;
 
     @Override
@@ -31,6 +34,7 @@ public class CreatePinActivity extends AppCompatActivity {
         pinCode = findViewById(R.id.code);
         confirmCode = findViewById(R.id.confirmCode);
         create = findViewById(R.id.create);
+        already = findViewById(R.id.already);
     }
 
     private void handleActions() {
