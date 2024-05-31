@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,4 +7,89 @@
     android:layout_height="match_parent"
     tools:context=".AlreadyHaveCode">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="60dp"
+        android:src="@drawable/laucher"
+        android:contentDescription="@string/moto"
+        android:layout_marginTop="30dp"
+        android:id="@+id/smallLock"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_height="60dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/moto"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:id="@+id/lockWord"
+        android:layout_below="@+id/smallLock"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_below="@+id/lockWord"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/linear_layout_style"
+        android:layout_height="230dp">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:background="@drawable/edit_view_style"
+            android:layout_marginTop="15dp"
+            android:hint="@string/username"
+            android:paddingLeft="10dp"
+            android:textSize="15sp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:id="@+id/username"
+            android:paddingTop="2dp"
+            android:layout_height="36dp"
+            android:inputType="text|textAutoComplete|textAutoCorrect"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:background="@drawable/edit_view_style"
+            android:layout_marginTop="15dp"
+            android:hint="@string/enter_security_code"
+            android:paddingLeft="10dp"
+            android:textSize="15sp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:id="@+id/code"
+            android:layout_height="36dp"
+            android:inputType="number|numberPassword"
+            tools:ignore="Autofill" />
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="@string/continues"
+            android:padding="5dp"
+            android:id="@+id/continues"
+            android:textColor="@color/white"
+            android:background="@drawable/image_button_style"
+            android:layout_height="46dp"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:text="@string/engineer"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
