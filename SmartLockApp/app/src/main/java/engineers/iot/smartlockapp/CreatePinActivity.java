@@ -43,5 +43,11 @@ public class CreatePinActivity extends AppCompatActivity {
          startActivity(intent);
          finish();
      });
+
+     already.setOnClickListener(e-> {
+         Intent intent = new Intent(getApplicationContext(), AlreadyHaveCode.class);
+         startActivity(intent);
+         finish();
+     });
     }
 }

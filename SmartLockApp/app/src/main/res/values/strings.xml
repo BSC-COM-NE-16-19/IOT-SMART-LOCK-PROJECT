@@ -6,7 +6,7 @@
     <string name="username">Enter username</string>
     <string name="userPin">Enter code</string>
     <string name="pinConfirm">Confirm code</string>
-    <string name="create">Create</string>
+    <string name="create">CREATE</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -43,5 +43,6 @@
     <string name="live">LIVE</string>
     <string name="enter_security_code">Enter security code</string>
     <string name="already_have_a_code">Already have a code?</string>
+    <string name="continues">CONTINUE</string>
 
 </resources>
