@@ -7,12 +7,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import engineers.iot.smartlockapp.Database.ConnectDB;
 import engineers.iot.smartlockapp.Model.HomeOwner;
@@ -56,18 +52,15 @@ public class CreatePinActivity extends AppCompatActivity {
          if(name.isEmpty() || code.isEmpty() || confPin.isEmpty()) {
              Toast.makeText(this, "Please fill all details!!", Toast.LENGTH_SHORT).show();
          } else if(!code.equals(confPin)) {
-             Toast.makeText(this, "The code do not match!!", Toast.LENGTH_SHORT).show();
+             Toast.makeText(this, "The security code do not match!!", Toast.LENGTH_SHORT).show();
          } else {
              HomeOwner owner = new HomeOwner(name,code, " ");
              db = new ConnectDB("HOMEOWNER");
-             db.getDatabaseReference().child(name.toLowerCase()).setValue(owner).addOnCompleteListener(new OnCompleteListener<Void>() {
-                 @Override
-                 public void onComplete(@NonNull Task<Void> task) {
-                     Toast.makeText(CreatePinActivity.this, "Successfully created a code", Toast.LENGTH_SHORT).show();
-                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                     startActivity(intent);
-                     finish();
-                 }
+             db.getDatabaseReference().child(name.toLowerCase()).setValue(owner).addOnCompleteListener(task -> {
+                 Toast.makeText(CreatePinActivity.this, "Successfully created a code", Toast.LENGTH_SHORT).show();
+                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                 startActivity(intent);
+                 finish();
              });
          }
 
