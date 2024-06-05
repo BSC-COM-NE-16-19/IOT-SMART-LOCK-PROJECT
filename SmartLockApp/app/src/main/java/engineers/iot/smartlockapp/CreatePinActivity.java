@@ -28,6 +28,8 @@ public class CreatePinActivity extends AppCompatActivity {
 
     public static String SECURITYCODE = "code";
 
+    public static String nameUser = "username";
+
     private PreferencesShared sharedPreferences;
 
     @Override
@@ -69,6 +71,7 @@ public class CreatePinActivity extends AppCompatActivity {
 
                  @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.getPreferences().edit();
                  editor.putString(SECURITYCODE, "set");
+                 editor.putString(nameUser,name.toLowerCase());
                  editor.apply();
 
                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
