@@ -1,6 +1,8 @@
 package engineers.iot.smartlockapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import engineers.iot.smartlockapp.Database.ConnectDB;
 import engineers.iot.smartlockapp.Model.HomeOwner;
+import engineers.iot.smartlockapp.Model.PreferencesShared;
 
 
 public class CreatePinActivity extends AppCompatActivity {
@@ -22,6 +25,10 @@ public class CreatePinActivity extends AppCompatActivity {
 
     private TextView already;
     private Button create;
+
+    public static String SECURITYCODE = "code";
+
+    private PreferencesShared sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,7 @@ public class CreatePinActivity extends AppCompatActivity {
         confirmCode = findViewById(R.id.confirmCode);
         create = findViewById(R.id.create);
         already = findViewById(R.id.already);
+        sharedPreferences = new PreferencesShared(this);
     }
 
     private void handleActions() {
@@ -58,6 +66,11 @@ public class CreatePinActivity extends AppCompatActivity {
              db = new ConnectDB("HOMEOWNER");
              db.getDatabaseReference().child(name.toLowerCase()).setValue(owner).addOnCompleteListener(task -> {
                  Toast.makeText(CreatePinActivity.this, "Successfully created a code", Toast.LENGTH_SHORT).show();
+
+                 @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.getPreferences().edit();
+                 editor.putString(SECURITYCODE, "set");
+                 editor.apply();
+
                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                  startActivity(intent);
                  finish();
