@@ -16,6 +16,27 @@ LCD_I2C lcd = LCD_I2C(0x27, 16, 2);
 
 FingerPrint::FingerPrint() {}
 
+
+
+void FingerPrint::checkFingerPrintSensor() {
+  Serial.begin(9600);
+  while (!Serial);  // For Yun/Leo/Micro/Zero/...
+  delay(100);
+  Serial.println("\n\nAdafruit finger detect test");
+
+  // set the data rate for the sensor serial port
+  finger.begin(57600);
+  delay(5);
+  if (finger.verifyPassword()) {
+    Serial.println("Found fingerprint sensor!");
+  } else {
+    Serial.println("Did not find fingerprint sensor :(");
+    while (1) { delay(1); }
+  }
+
+}
+
+
 void FingerPrint::setEnrollment(bool enrollment) {
   _enrollment = enrollment;
 }
