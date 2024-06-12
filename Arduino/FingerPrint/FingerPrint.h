@@ -15,6 +15,7 @@ public:
   void initializeFingerprint();
   void displayFingerPrintProperties();
   void checkFingerPrintSensor();
+  void readyToEnroll();
   bool getEnrollment();
   bool getAuthentication();
   void setEnrollment(bool enrollment);
