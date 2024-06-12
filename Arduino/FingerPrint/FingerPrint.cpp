@@ -16,3 +16,22 @@ LCD_I2C lcd = LCD_I2C(0x27, 16, 2);
 
 FingerPrint::FingerPrint() {}
 
+void FingerPrint::setEnrollment(bool enrollment) {
+  _enrollment = enrollment;
+}
+
+void FingerPrint::setAuthentication(bool authentication) {
+  _authenticationAndVerification = authentication;
+}
+
+bool FingerPrint::getEnrollment() {
+  return _enrollment;
+}
+
+LCD_I2C FingerPrint::getLcd(){
+  return lcd;
+}
+
+bool FingerPrint::getAuthentication() {
+  return _authenticationAndVerification;
+}
