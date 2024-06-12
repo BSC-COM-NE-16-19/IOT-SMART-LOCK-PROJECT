@@ -8,7 +8,8 @@
 
 class FingerPrint {
 
-
+public:
+  FingerPrint();
 
 private:
   uint8_t _id;
