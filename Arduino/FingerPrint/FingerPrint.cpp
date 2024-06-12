@@ -349,22 +349,112 @@ void FingerPrint::checkFingerPrintSensor() {
 
 }
 
-void FingerPrint::checkFingerPrintSensor() {
-  Serial.begin(9600);
-  while (!Serial);  // For Yun/Leo/Micro/Zero/...
-  delay(100);
-  Serial.println("\n\nAdafruit finger detect test");
-
-  // set the data rate for the sensor serial port
-  finger.begin(57600);
-  delay(5);
-  if (finger.verifyPassword()) {
-    Serial.println("Found fingerprint sensor!");
-  } else {
-    Serial.println("Did not find fingerprint sensor :(");
-    while (1) { delay(1); }
+uint8_t FingerPrint::getFingerprintID() {
+ uint8_t p = finger.getImage();
+  switch (p) {
+    case FINGERPRINT_OK:
+      Serial.println("Image taken");
+      break;
+    case FINGERPRINT_NOFINGER:
+      //Serial.println("No finger detected");
+      return p;
+    case FINGERPRINT_PACKETRECIEVEERR:
+      Serial.println("Communication error");
+      return p;
+    case FINGERPRINT_IMAGEFAIL:
+      Serial.println("Imaging error");
+      return p;
+    default:
+      Serial.println("Unknown error");
+      return p;
   }
 
+  // OK success!
+
+  p = finger.image2Tz();
+  switch (p) {
+    case FINGERPRINT_OK:
+      Serial.println("Image converted");
+      break;
+    case FINGERPRINT_IMAGEMESS:
+      Serial.println("Image too messy");
+      return p;
+    case FINGERPRINT_PACKETRECIEVEERR:
+      Serial.println("Communication error");
+      return p;
+    case FINGERPRINT_FEATUREFAIL:
+      Serial.println("Could not find fingerprint features");
+      return p;
+    case FINGERPRINT_INVALIDIMAGE:
+      Serial.println("Could not find fingerprint features");
+      return p;
+    default:
+      Serial.println("Unknown error");
+      return p;
+  }
+
+  // OK converted!
+  p = finger.fingerSearch();
+  if (p == FINGERPRINT_OK) {
+    Serial.println("Found a print match!");
+    attempts = 0;
+    digitalWrite(pin,HIGH);
+    Serial.println("UNLOCKED");
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("     UNLOCKED");
+    delay(3000);
+    digitalWrite(pin,LOW);
+    Serial.println("LOCKED");
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("     LOCKED");
+  } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
+    Serial.println("Communication error");
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("Place finger");
+    lcd.setCursor(0,1);
+    lcd.print("Properly");
+    delay(DELAY);
+    return p;
+  } else if (p == FINGERPRINT_NOTFOUND) {
+    Serial.println("Did not find a match");
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("     DENIED");
+    delay(DELAY);
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("     LOCKED");
+
+    attempts++;
+    if(attempts == 3) {
+      digitalWrite(buzzlePin,HIGH);
+      delay(buzzleDelay);
+      digitalWrite(buzzlePin,LOW);
+      attempts = 0;
+    }
+    return p;
+  } else {
+    Serial.println("Unknown error");
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("Place finger");
+    lcd.setCursor(0,1);
+    lcd.print("Properly");
+    delay(DELAY);
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("     LOCKED");
+    return p;
+  }
+
+  // found a match!
+  Serial.print("Found ID #"); Serial.print(finger.fingerID);
+  Serial.print(" with confidence of "); Serial.println(finger.confidence);
+
+  return finger.fingerID;
 }
 
 void FingerPrint::displayFingerPrintProperties() {
