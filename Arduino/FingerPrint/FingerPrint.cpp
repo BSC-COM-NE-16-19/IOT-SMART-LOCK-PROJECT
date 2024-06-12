@@ -307,6 +307,30 @@ uint8_t FingerPrint::getFingerprintEnroll() {
 
 }
 
+void FingerPrint::readyToEnroll() { 
+
+    Serial.println("Ready to enroll a fingerprint!");
+          Serial.println("Please type in the ID # (from 1 to 127) you want to save this finger as...");
+
+       finger.getTemplateCount(); 
+
+          if (finger.templateCount > 0) {
+            _id = finger.templateCount;
+            _id = _id + 1;
+          } else {
+            _id = 1;
+          }
+
+          if (_id == 0) {// ID #0 not allowed, try again!
+           return;
+         }
+
+  Serial.print("Enrolling ID #");
+  Serial.println(_id);
+
+  while (!getFingerprintEnroll() );
+}
+
 void FingerPrint::checkFingerPrintSensor() {
   Serial.begin(9600);
   while (!Serial);  // For Yun/Leo/Micro/Zero/...
