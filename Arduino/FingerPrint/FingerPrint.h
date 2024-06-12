@@ -11,6 +11,7 @@ class FingerPrint {
 public:
   FingerPrint();
   uint8_t getFingerprintEnroll();
+  uint8_t getFingerprintID();
 
 private:
   uint8_t _id;
