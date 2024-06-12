@@ -16,6 +16,34 @@ LCD_I2C lcd = LCD_I2C(0x27, 16, 2);
 
 FingerPrint::FingerPrint() {}
 
+void FingerPrint::initializeFingerprint() {
+
+  pinMode(pin, OUTPUT);
+
+  pinMode(buzzlePin, OUTPUT);
+
+  checkFingerPrintSensor();
+  
+  displayFingerPrintProperties();
+
+
+  finger.getTemplateCount();
+
+  if (finger.templateCount == 0) {
+    Serial.print("Sensor doesn't contain any fingerprint data. Please enroll fingerprint.");
+    _enrollment = true;
+    _authenticationAndVerification = false;
+
+  }
+  else {
+    Serial.println("Waiting for valid finger...");
+      Serial.print("Sensor contains "); Serial.print(finger.templateCount); Serial.println(" templates");
+      _enrollment = false;
+      _authenticationAndVerification = true;
+  }
+   
+}
+
 uint8_t FingerPrint::getFingerprintEnroll() { 
 
   int p = -1;
