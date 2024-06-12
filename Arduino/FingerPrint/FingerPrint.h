@@ -12,6 +12,10 @@ public:
   FingerPrint();
   uint8_t getFingerprintEnroll();
   uint8_t getFingerprintID();
+  bool getEnrollment();
+  bool getAuthentication();
+  void setEnrollment(bool enrollment);
+  void setAuthentication(bool authentication);
 
 private:
   uint8_t _id;
