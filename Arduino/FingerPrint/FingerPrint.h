@@ -10,6 +10,7 @@ class FingerPrint {
 
 public:
   FingerPrint();
+  uint8_t getFingerprintEnroll();
 
 private:
   uint8_t _id;
