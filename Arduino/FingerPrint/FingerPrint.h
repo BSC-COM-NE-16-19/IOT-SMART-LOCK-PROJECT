@@ -7,9 +7,13 @@
 
 
 class FingerPrint {
-    
 
 
+
+private:
+  uint8_t _id;
+  bool _enrollment;
+  bool _authenticationAndVerification;    
 };
 
 #endif
