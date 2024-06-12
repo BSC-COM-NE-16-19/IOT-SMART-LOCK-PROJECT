@@ -14,6 +14,7 @@ public:
   uint8_t getFingerprintID();
   void initializeFingerprint();
   void displayFingerPrintProperties();
+  void checkFingerPrintSensor();
   bool getEnrollment();
   bool getAuthentication();
   void setEnrollment(bool enrollment);
