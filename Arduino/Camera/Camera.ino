@@ -220,6 +220,99 @@ uint8_t *fbBuf = fb->buf;
     sendPhoto = false;
    
   }
+else {
+    getBody="Connected to api.telegram.org failed.";
+    Serial.println("Connected to api.telegram.org failed.");
+  }
+  return getBody;
+  
+}
+
+void setup(){
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
+  // Init Serial Monitor
+  Serial.begin(115200);
+
+  // Set LED Flash as output
+  pinMode(FLASH_LED_PIN, OUTPUT);
+  digitalWrite(FLASH_LED_PIN, flashState);
+
+  // Config and init the camera
+  configInitCamera();
+
+  // Connect to Wi-Fi
+  WiFi.mode(WIFI_STA);
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  clientTCP.setCACert(TELEGRAM_CERTIFICATE_ROOT); // Add root certificate for api.telegram.org
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println();
+  Serial.print("ESP32-CAM IP Address: ");
+  Serial.println(WiFi.localIP()); 
+  connectToFirebase();
+}
+
+void loop() {
+
+   readDataFromFirebase();
+
+   handleNewMessages(message);
+
+
+  if (sendPhoto) {
+      Serial.println("Preparing photo");
+      sendPhotoTelegram(); 
+      sendPhoto = false;
+      delay(1000);
+       
+  }
+
+}
+
+void readDataFromFirebase() {
+
+  if(Firebase.ready() && signOk) {
+     if(!Firebase.RTDB.readStream(&fbStream1))
+        Serial.printf("Stream 1 error %s\n\n", fbStream1.errorReason().c_str());
+     if(fbStream1.streamAvailable()){
+        if(fbStream1.dataType() == "string") {
+          message = fbStream1.stringData();
+          Serial.println("SUCCESSFULLY READ FROM " + fbStream1.dataPath() + ": " + message + " (" + fbStream1.dataType() + ")");
+        }
+
+     }
+  
+
+
+  }
+
+}
+
+
+void connectToFirebase() {
+
+        config.api_key = API_KEY;
+        config.database_url = DATABASE_URL;
+
+        if(Firebase.signUp(&config, &auth,"","")) {
+          Serial.println("Signup OK");
+          signOk = true;
+        } else {
+          Serial.printf("%s\n", config.signer.signupError.message.c_str());
+        }
+
+        Firebase.begin(&config, &auth);
+        Firebase.reconnectWiFi(true);
+
+         if(!Firebase.RTDB.beginStream(&fbStream1, "/CAMERA/command"))
+        Serial.printf("Stream 1 error %s\n\n", fbStream1.errorReason().c_str());
+
+}
 
 
 
