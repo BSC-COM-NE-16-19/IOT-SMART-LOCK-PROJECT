@@ -1,5 +1,7 @@
 package engineers.iot.smartlockapp;
 
+import static engineers.iot.smartlockapp.CreatePinActivity.nameUser;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -20,10 +22,12 @@ import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.PopupMenu;
 
 
+import com.google.firebase.database.DataSnapshot;
+
 import java.util.Objects;
 
 import engineers.iot.smartlockapp.Database.ConnectDB;
-
+import engineers.iot.smartlockapp.Model.PreferencesShared;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -119,6 +123,48 @@ public class MainActivity extends AppCompatActivity {
         live.setOnClickListener(e-> Toast.makeText(this, "LIVE Pressed", Toast.LENGTH_SHORT).show());
 
         cancel.setOnClickListener(e-> passDialog.dismiss());
+
+        change.setOnClickListener(e->{
+
+            if(oldPass.getText().toString().isEmpty() || newPass.getText().toString().isEmpty() || confPass.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show();
+            } else if(!newPass.getText().toString().equals(confPass.getText().toString())) {
+                Toast.makeText(this, "Confirm password does match new password", Toast.LENGTH_SHORT).show();
+            } else {
+                String currentPass = oldPass.getText().toString();
+                String newCode = newPass.getText().toString();
+
+                PreferencesShared preferencesShared = new PreferencesShared(this);
+                String username = preferencesShared.getPreferences().getString(nameUser, null);
+
+                ConnectDB database = new ConnectDB("HOMEOWNER");
+
+                assert username != null;
+                database.getDatabaseReference().child(username).get().addOnCompleteListener(task -> {
+
+                    if(task.isSuccessful()) {
+                        if(task.getResult().exists()) {
+                            DataSnapshot data = task.getResult();
+                            String passcode = String.valueOf(data.child("code").getValue());
+                            if(passcode.equals(currentPass)) {
+                            database.getDatabaseReference().child(username).child("code").setValue(newCode).addOnCompleteListener(task1 -> {
+
+                                if(task1.isSuccessful()) {
+                                    Toast.makeText(MainActivity.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
+                                    passDialog.dismiss();
+                                    oldPass.setText("");
+                                    newPass.setText("");
+                                    confPass.setText("");
+                                }
+                            });
+                            }
+                        }
+                    }
+
+                });
+            }
+
+        });
 
         lock.setOnClickListener(e->{
 
