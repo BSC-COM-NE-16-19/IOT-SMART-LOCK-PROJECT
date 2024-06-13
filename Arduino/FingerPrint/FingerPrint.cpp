@@ -1,3 +1,4 @@
+// libraries
 #include "FingerPrint.h"
 
 #define MODEM_RX 16
@@ -334,6 +335,8 @@ uint8_t FingerPrint::getFingerprintEnroll() {
   return true;
 
 }
+
+// Enroll
 
 void FingerPrint::readyToEnroll() { 
 
