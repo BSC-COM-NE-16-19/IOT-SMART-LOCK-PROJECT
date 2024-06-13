@@ -1,0 +1,3 @@
+/* this code is for the camera module
+   for capturing images and for live streaming
+   */
