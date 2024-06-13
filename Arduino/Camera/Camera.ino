@@ -237,10 +237,11 @@ else {
   return getBody;
   
 }
+// setup function to initialise camera
 
 void setup(){
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
-  // Init Serial Monitor
+  // Initialise Serial Monitor
   Serial.begin(115200);
 
   // Set LED Flash as output
@@ -266,6 +267,7 @@ void setup(){
   Serial.println(WiFi.localIP()); 
   connectToFirebase();
 }
+//loop function to handle the main logic
 
 void loop() {
 
