@@ -16,8 +16,8 @@
 #include <addons/TokenHelper.h>
 #include <addons/RTDBHelper.h>
 
-#define API_KEY "AIzaSyCehFFOt1zgg4VkE1Lol9zvWoNj-q5AWx0"
-#define DATABASE_URL "https://test-c2c3c-default-rtdb.firebaseio.com/"
+#define API_KEY ""
+#define DATABASE_URL ""
 
 FirebaseData fbData, fbStream1;
 FirebaseAuth auth;
