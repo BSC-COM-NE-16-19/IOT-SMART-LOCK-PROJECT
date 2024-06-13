@@ -101,6 +101,7 @@ void configInitCamera(){
   config.pixel_format = PIXFORMAT_JPEG;
 
 //init with high specs to pre-allocate larger buffers
+  
   if(psramFound()){
     config.frame_size = FRAMESIZE_UXGA;
     config.jpeg_quality = 10;  //0-63 lower number means higher quality
@@ -111,7 +112,7 @@ void configInitCamera(){
     config.fb_count = 1;
   }
   
-  // camera init
+  // camera initialisation
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
     Serial.printf("Camera init failed with error 0x%x", err);
@@ -120,9 +121,12 @@ void configInitCamera(){
   }
 
   // Drop down frame size for higher initial frame rate
+  
   sensor_t * s = esp_camera_sensor_get();
   s->set_framesize(s, FRAMESIZE_CIF);  // UXGA|SXGA|XGA|SVGA|VGA|CIF|QVGA|HQVGA|QQVGA
 }
+
+// function for handling new messages from Telegram
 
 void handleNewMessages(String Message) {
 
@@ -147,6 +151,8 @@ void handleNewMessages(String Message) {
     }
 
 }
+
+//funcction to send the captured photo to telegram
 
 String sendPhotoTelegram() {
   const char* myDomain = "api.telegram.org";
