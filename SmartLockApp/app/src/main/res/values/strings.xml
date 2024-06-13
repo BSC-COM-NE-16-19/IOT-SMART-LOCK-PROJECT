@@ -47,6 +47,6 @@
     <string name="enter_pervious_code">Enter pervious code</string>
     <string name="enter_new_code">Enter new code</string>
     <string name="confirm_code">Confirm code</string>
-    <string name="change">Change</string>
+    <string name="change">CHANGE</string>
 
 </resources>
