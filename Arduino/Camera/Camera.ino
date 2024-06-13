@@ -120,6 +120,30 @@ void configInitCamera(){
   s->set_framesize(s, FRAMESIZE_CIF);  // UXGA|SXGA|XGA|SVGA|VGA|CIF|QVGA|HQVGA|QQVGA
 }
 
+void handleNewMessages(String Message) {
+
+    if (Message == "/start") {
+      //String welcome = "Welcome , " + from_name + "\n";
+      welcome += "Use the following commands to interact with the ESP32-CAM \n";
+      welcome += "/photo : takes a new photo\n";
+      welcome += "/flash : toggles flash LED \n";
+      bot.sendMessage(CHAT_ID, welcome, "");
+    }
+    if (Message == "/flash") {
+      flashState = !flashState;
+      digitalWrite(FLASH_LED_PIN, flashState);
+      Serial.println("Change flash LED state");
+    }
+    if (Message == "/photo") {
+      sendPhoto = true;
+            Serial.println("New photo request");
+    }
+    else {
+      sendPhoto = false;
+    }
+
+}
+
 
 
 
