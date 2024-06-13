@@ -30,3 +30,19 @@ String message = " ";
 String welcome = " ";
 const char* ssid = "HUAWEI Y7 2019";
 const char* password = "1214@KB.one";
+
+int numNewMessages;
+
+// Initialize Telegram BOT
+String BOTtoken = "6565922428:AAGTv0YP3NE6I_YGznPx4GwNqoXQVCvkMTM";  // your Bot Token (Get from Botfather)
+
+// Use @myidbot to find out the chat ID of an individual or a group
+// Also note that you need to click "start" on a bot before it can
+// message you
+String CHAT_ID = "7105758160";
+
+bool sendPhoto = false;
+
+WiFiClientSecure clientTCP;
+UniversalTelegramBot bot(BOTtoken, clientTCP);
+
