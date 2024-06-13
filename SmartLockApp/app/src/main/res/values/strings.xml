@@ -48,5 +48,6 @@
     <string name="enter_new_code">Enter new code</string>
     <string name="confirm_code">Confirm code</string>
     <string name="change">CHANGE</string>
+    <string name="add_phone_number">Add Phone Number</string>
 
 </resources>

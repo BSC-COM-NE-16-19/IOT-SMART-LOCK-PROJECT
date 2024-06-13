@@ -38,6 +38,8 @@ dependencies {
     implementation(libs.firebase.database)
     //noinspection UseTomlInstead
     implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+    //noinspection UseTomlInstead
+    implementation ("com.orhanobut:dialogplus:1.11@aar")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
