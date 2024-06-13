@@ -20,7 +20,7 @@ The system can be connected to any wireless network for communication over the i
 - GSM module
 - Relay module
 - Solenoid lock
-- Liquid Crystal Display (LCD Display)
+- Liquid Crystal LCD Display
 # TECHNOLOGIES USED
 - Java
 - C++
