@@ -45,4 +45,13 @@ bool sendPhoto = false;
 
 WiFiClientSecure clientTCP;
 UniversalTelegramBot bot(BOTtoken, clientTCP);
+UniversalTelegramBot bot(BOTtoken, clientTCP);
+
+#define FLASH_LED_PIN 4
+bool flashState = LOW;
+
+//Checks for new messages every 1 second.
+int botRequestDelay = 1000;
+unsigned long lastTimeBotRan;
+
 
