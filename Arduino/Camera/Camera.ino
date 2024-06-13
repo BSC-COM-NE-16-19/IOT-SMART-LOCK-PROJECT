@@ -18,3 +18,15 @@
 
 #define API_KEY "AIzaSyCehFFOt1zgg4VkE1Lol9zvWoNj-q5AWx0"
 #define DATABASE_URL "https://test-c2c3c-default-rtdb.firebaseio.com/"
+
+FirebaseData fbData, fbStream1;
+FirebaseAuth auth;
+FirebaseConfig config;
+
+bool signOk = false;
+
+String message = " ";
+
+String welcome = " ";
+const char* ssid = "HUAWEI Y7 2019";
+const char* password = "1214@KB.one";
