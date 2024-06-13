@@ -16,6 +16,8 @@
 #include <addons/TokenHelper.h>
 #include <addons/RTDBHelper.h>
 
+//deifne firebase API key and database URL
+//hidden forsecurity purposes
 #define API_KEY ""
 #define DATABASE_URL ""
 
@@ -26,10 +28,10 @@ FirebaseConfig config;
 bool signOk = false;
 
 String message = " ";
-
+//again, password hidden for security purposes
 String welcome = " ";
 const char* ssid = "HUAWEI Y7 2019";
-const char* password = "1214@KB.one";
+const char* password = "";
 
 int numNewMessages;
 
@@ -37,7 +39,7 @@ int numNewMessages;
 String BOTtoken = "6565922428:AAGTv0YP3NE6I_YGznPx4GwNqoXQVCvkMTM";  // your Bot Token (Get from Botfather)
 
 // Use @myidbot to find out the chat ID of an individual or a group
-// Also note that you need to click "start" on a bot before it can
+// you need to click "start" on a bot before it can
 // message you
 String CHAT_ID = "7105758160";
 
@@ -54,7 +56,7 @@ bool flashState = LOW;
 int botRequestDelay = 1000;
 unsigned long lastTimeBotRan;
 
-//CAMERA_MODEL_AI_THINKER
+//CAMERA_MODEL_AI_THINKER pin definitions
 #define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
 #define XCLK_GPIO_NUM      0
