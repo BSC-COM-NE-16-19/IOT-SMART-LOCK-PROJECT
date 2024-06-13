@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void showChangePasswordDialogBox() {
+
+    }
+
     private boolean onItemMenuListener(MenuItem item) {
 
         if(item.getItemId() == R.id.addMobileNumber) {
