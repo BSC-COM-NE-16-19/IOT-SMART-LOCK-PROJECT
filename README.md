@@ -27,4 +27,9 @@ The system can be connected to any wireless network for communication over the i
 - Firebase
 - Android studio
 - Arduino IDE
+# TEAM MEMBERS
+- Godbless Mlenga
+- Blessings M'manga
+- Kim Iddrisah
+- Modester chisambo
 
