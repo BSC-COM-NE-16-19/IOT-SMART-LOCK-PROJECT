@@ -16,7 +16,7 @@ The system can be connected to any wireless network for communication over the i
 - Fingerprint sensor
 - esp32 micro controller module
 - esp32 camera module
-- A buzzler
+- A buzzer
 - GSM module
 - Relay module
 - Solenoid lock
