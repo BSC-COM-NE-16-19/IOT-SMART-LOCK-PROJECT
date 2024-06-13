@@ -157,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
                                     confPass.setText("");
                                 }
                             });
+                            } else {
+                                Toast.makeText(this, "Password unknown", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
