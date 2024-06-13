@@ -75,6 +75,8 @@ unsigned long lastTimeBotRan;
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
+// configuring and initialising the camera
+
 void configInitCamera(){
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
