@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +18,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.PopupMenu;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.Objects;
 
@@ -73,12 +79,53 @@ public class MainActivity extends AppCompatActivity {
     private boolean onItemMenuListener(MenuItem item) {
 
         if(item.getItemId() == R.id.addMobileNumber) {
-            Toast.makeText(this, "Clicked add mobile number", Toast.LENGTH_SHORT).show();
+            showDialogPlus();
         } else if(item.getItemId() == R.id.changePassword) {
            showChangePasswordDialogBox();
         }
 
         return true;
+    }
+
+    private void showDialogPlus() {
+        final DialogPlus addNumberPlus = DialogPlus.newDialog(this)
+                .setContentHolder(new ViewHolder(R.layout.add_number_dialog))
+                .setExpanded(true,220)
+                .create();
+
+        View view = addNumberPlus.getHolderView();
+
+        EditText phoneNumber = view.findViewById(R.id.phoneNumber);
+        Button add = view.findViewById(R.id.addNumber);
+
+        add.setOnClickListener(e-> {
+
+            if(phoneNumber.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Please add you phone number!!", Toast.LENGTH_SHORT).show();
+            } else {
+                String phone = phoneNumber.getText().toString();
+
+                PreferencesShared preferencesShared = new PreferencesShared(this);
+                String username = preferencesShared.getPreferences().getString(nameUser, null);
+
+                ConnectDB database = new ConnectDB("HOMEOWNER");
+                assert username != null;
+                database.getDatabaseReference().child(username).child("phoneNumber").setValue(phone).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if(task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Successfully added phone number", Toast.LENGTH_SHORT).show();
+                            addNumberPlus.dismiss();
+                        }
+
+                    }
+                });
+            }
+        });
+
+        addNumberPlus.show();
+
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
