@@ -544,3 +544,6 @@ void FingerPrint::sendCommand(const char* cmd, int delayTime) {
 
 void FingerPrint::sendSMS(const char* phoneNumber, const char* message) {
   sendCommand("AT+CMGF=1", 100); // Set SMS to text mode
+a9gSerial.print("AT+CMGS=\"");
+  a9gSerial.print(phoneNumber);
+  a9gSerial.println("\"");
