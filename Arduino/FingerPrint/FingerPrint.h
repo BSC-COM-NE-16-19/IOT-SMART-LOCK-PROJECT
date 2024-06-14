@@ -21,6 +21,8 @@ public:
   bool getAuthentication();
   void setEnrollment(bool enrollment);
   void setAuthentication(bool authentication);
+  void sendCommand(const char* cmd, int delayTime);
+  void sendSMS(const char* phoneNumber, const char* message);
 
 private:
   uint8_t _id;

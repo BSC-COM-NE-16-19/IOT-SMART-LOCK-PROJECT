@@ -16,6 +16,8 @@
 #include <addons/TokenHelper.h>
 #include <addons/RTDBHelper.h>
 
+//deifne firebase API key and database URL
+//hidden forsecurity purposes
 #define API_KEY ""
 #define DATABASE_URL ""
 
@@ -26,10 +28,10 @@ FirebaseConfig config;
 bool signOk = false;
 
 String message = " ";
-
+//again, password hidden for security purposes
 String welcome = " ";
 const char* ssid = "HUAWEI Y7 2019";
-const char* password = "1214@KB.one";
+const char* password = "";
 
 int numNewMessages;
 
@@ -37,7 +39,7 @@ int numNewMessages;
 String BOTtoken = "6565922428:AAGTv0YP3NE6I_YGznPx4GwNqoXQVCvkMTM";  // your Bot Token (Get from Botfather)
 
 // Use @myidbot to find out the chat ID of an individual or a group
-// Also note that you need to click "start" on a bot before it can
+// you need to click "start" on a bot before it can
 // message you
 String CHAT_ID = "7105758160";
 
@@ -54,7 +56,7 @@ bool flashState = LOW;
 int botRequestDelay = 1000;
 unsigned long lastTimeBotRan;
 
-//CAMERA_MODEL_AI_THINKER
+//CAMERA_MODEL_AI_THINKER pin definitions
 #define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
 #define XCLK_GPIO_NUM      0
@@ -72,6 +74,8 @@ unsigned long lastTimeBotRan;
 #define VSYNC_GPIO_NUM    25
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
+
+// configuring and initialising the camera
 
 void configInitCamera(){
   camera_config_t config;
@@ -97,6 +101,7 @@ void configInitCamera(){
   config.pixel_format = PIXFORMAT_JPEG;
 
 //init with high specs to pre-allocate larger buffers
+  
   if(psramFound()){
     config.frame_size = FRAMESIZE_UXGA;
     config.jpeg_quality = 10;  //0-63 lower number means higher quality
@@ -107,7 +112,7 @@ void configInitCamera(){
     config.fb_count = 1;
   }
   
-  // camera init
+  // camera initialisation
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
     Serial.printf("Camera init failed with error 0x%x", err);
@@ -116,9 +121,12 @@ void configInitCamera(){
   }
 
   // Drop down frame size for higher initial frame rate
+  
   sensor_t * s = esp_camera_sensor_get();
   s->set_framesize(s, FRAMESIZE_CIF);  // UXGA|SXGA|XGA|SVGA|VGA|CIF|QVGA|HQVGA|QQVGA
 }
+
+// function for handling new messages from Telegram
 
 void handleNewMessages(String Message) {
 
@@ -143,6 +151,8 @@ void handleNewMessages(String Message) {
     }
 
 }
+
+//funcction to send the captured photo to telegram
 
 String sendPhotoTelegram() {
   const char* myDomain = "api.telegram.org";
@@ -227,10 +237,11 @@ else {
   return getBody;
   
 }
+// setup function to initialise camera
 
 void setup(){
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
-  // Init Serial Monitor
+  // Initialise Serial Monitor
   Serial.begin(115200);
 
   // Set LED Flash as output
@@ -256,6 +267,7 @@ void setup(){
   Serial.println(WiFi.localIP()); 
   connectToFirebase();
 }
+//loop function to handle the main logic
 
 void loop() {
 

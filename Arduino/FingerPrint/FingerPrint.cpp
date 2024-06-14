@@ -2,6 +2,12 @@
 //include fingerprint
 #include "FingerPrint.h"
 
+#include "Firebase_ESP_Client.h"
+
+#include <SoftwareSerial.h>
+
+
+SoftwareSerial a9gSerial(5, 15); // RX, TX
 #define MODEM_RX 16
 #define MODEM_TX 17
 #define mySerial Serial2
@@ -15,6 +21,8 @@ int buzzleDelay = 5000;
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
 LCD_I2C lcd = LCD_I2C(0x27, 16, 2);
+
+FirebaseData fData;
 
 FingerPrint::FingerPrint() {}
 
@@ -292,7 +300,9 @@ uint8_t FingerPrint::getFingerprintEnroll() {
   Serial.print("ID "); Serial.println(_id);
   p = finger.storeModel(_id);
   if (p == FINGERPRINT_OK) {
-    Serial.println("Stored!");
+
+    String fName = "Default"
+    String surname = "Default";
     lcd.clear();
     lcd.backlight();
     lcd.print("Stored!");
@@ -462,6 +472,9 @@ uint8_t FingerPrint::getFingerprintID() {
 
     attempts++;
     if(attempts == 3) {
+      // Configure the A9G module for SMS
+      sendCommand("AT+CMGF=1", 3000); // Set SMS to text mode
+      sendSMS("+265990409624", "\"Alert: UNAUTHORISED INDIVIDUAL IS ATTEMPTETING TO ACCESS YOUR LOCK. PLEASE CHECK YOUR TELEGRAM FOR A PICTURE.\""); // Sending SMS to the specified number
       digitalWrite(buzzlePin,HIGH);
       delay(buzzleDelay);
       digitalWrite(buzzlePin,LOW);
@@ -516,7 +529,13 @@ bool FingerPrint::getEnrollment() {
 LCD_I2C FingerPrint::getLcd(){
   return lcd;
 }
-
+void FingerPrint::sendCommand(const char* cmd, int delayTime) {
+  a9gSerial.println(cmd);
+  delay(delayTime);
+   while (a9gSerial.available()) {
+    Serial.write(a9gSerial.read()); // Print the response to the Serial Monitor
+  }
+}
 bool FingerPrint::getAuthentication() {
   return _authenticationAndVerification;
 }
