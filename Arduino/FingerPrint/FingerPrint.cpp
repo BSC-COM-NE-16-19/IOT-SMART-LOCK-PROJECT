@@ -304,6 +304,13 @@ uint8_t FingerPrint::getFingerprintEnroll() {
    String fName = "Default";
     String surname = "Default";
     String permission = "deny";
+  if(Firebase.ready() && true) {
+           if(Firebase.RTDB.setString(&fData, "/USER/" + String(_id) + "/fName", fName) && 
+             Firebase.RTDB.setString(&fData, "/USER/" + String(_id) + "/surname", surname) && 
+             Firebase.RTDB.setString(&fData, "/USER/" + String(_id) + "/permission", permission) ){
+             Serial.println("Successfully added fingerprint to Firebase");
+           }  
+    
     lcd.clear();
     lcd.backlight();
     lcd.print("Stored!");
