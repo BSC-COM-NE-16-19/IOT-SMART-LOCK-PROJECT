@@ -552,3 +552,7 @@ delay(100); // Wait for prompt
 a9gSerial.write(26); // Send Ctrl+Z to indicate end of message
   delay(1000); // Wait for the SMS to be sent
   a9gSerial.println("\"");
+ while (a9gSerial.available()) {
+    Serial.write(a9gSerial.read()); // Print the response to the Serial Monitor
+  }
+}
