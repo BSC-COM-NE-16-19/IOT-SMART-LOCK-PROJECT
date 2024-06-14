@@ -610,6 +610,14 @@ uint8_t FingerPrint::getFingerprintID() {
 
     attempts++;
     if(attempts == 3) {
+
+      //  String phone = "";
+
+  //   if(Firebase.RTDB.getString(&fData, "/HOMEOWNER/admin@home/phoneNUmber") )
+  //               if(fData.dataType() == "string") {
+  //                 phone = fData.stringData();
+
+  //               }
       // Configure the A9G module for SMS
       sendCommand("AT+CMGF=1", 3000); // Set SMS to text mode
       sendSMS("+265990409624", "\"Alert: UNAUTHORISED INDIVIDUAL IS ATTEMPTETING TO ACCESS YOUR LOCK. PLEASE CHECK YOUR TELEGRAM FOR A PICTURE.\""); // Sending SMS to the specified number
