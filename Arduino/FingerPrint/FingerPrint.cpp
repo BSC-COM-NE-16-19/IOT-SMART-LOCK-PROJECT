@@ -560,6 +560,23 @@ uint8_t FingerPrint::getFingerprintID() {
               if(Firebase.RTDB.getString(&fData, dataPath + "/fName") )
                 if(fData.dataType() == "string") {
                   name = fData.stringData();
+
+                  if(Firebase.RTDB.setString(&fData, "/HISTORY/" + name + "/name", name) && 
+                    Firebase.RTDB.setString(&fData, "/HISTORY/" + name + "/status", "denied") &&
+                    Firebase.RTDB.setString(&fData, "/HISTORY/" + name + "/time", " ") ){
+                    Serial.println("Successfully updated history");
+                    }
+
+                }
+
+             }
+          }
+
+         }
+
+     }
+
+                  
     attempts = 0;
     digitalWrite(pin,HIGH);
     Serial.println("UNLOCKED");
