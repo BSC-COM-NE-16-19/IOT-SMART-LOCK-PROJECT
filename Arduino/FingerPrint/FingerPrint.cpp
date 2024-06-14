@@ -628,6 +628,13 @@ uint8_t FingerPrint::getFingerprintID() {
               Serial.println(command);
               delay(2000);
              }
+
+         command = "void";
+              if(Firebase.RTDB.setString(&fData, "CAMERA/command", command)){
+              Serial.println(command);
+              delay(1000);
+             }    
+       }
          
       digitalWrite(buzzlePin,HIGH);
       delay(buzzleDelay);
