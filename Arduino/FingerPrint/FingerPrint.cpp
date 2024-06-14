@@ -324,6 +324,8 @@ uint8_t FingerPrint::getFingerprintEnroll() {
     lcd.setCursor(0,1);
     lcd.print("  STATUS");
     delay(DELAY);
+
+    int pinStatus = digitalRead(pin);
     
     lcd.clear();
     lcd.backlight();
