@@ -381,6 +381,18 @@ uint8_t FingerPrint::getFingerprintEnroll() {
   return true;
 
 }
+void FingerPrint::checkFingerPrintSensor() { 
+  
+  Serial.begin(9600);
+  while (!Serial);  // For Yun/Leo/Micro/Zero/...
+  delay(100);
+  Serial.println("\n\nAdafruit finger detect test");
+
+  a9gSerial.begin(9600);
+  Serial.println("Initializing A9G module...");
+  // Give the module some time to initialize
+  delay(3000);
+
 
 // Enroll
 
