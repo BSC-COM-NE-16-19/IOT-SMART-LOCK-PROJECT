@@ -321,7 +321,9 @@ uint8_t FingerPrint::getFingerprintEnroll() {
     lcd.clear();
     lcd.backlight();
     lcd.print("CHECKING LOCK");
-
+    lcd.setCursor(0,1);
+    lcd.print("  STATUS");
+    delay(DELAY);
     
     lcd.clear();
     lcd.backlight();
