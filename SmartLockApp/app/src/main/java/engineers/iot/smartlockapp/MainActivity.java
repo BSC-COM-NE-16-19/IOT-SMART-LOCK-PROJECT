@@ -18,14 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.PopupMenu;
 
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -110,16 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
                 ConnectDB database = new ConnectDB("HOMEOWNER");
                 assert username != null;
-                database.getDatabaseReference().child(username).child("phoneNumber").setValue(phone).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                database.getDatabaseReference().child(username).child("phoneNumber").setValue(phone).addOnCompleteListener(task -> {
 
-                        if(task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Successfully added phone number", Toast.LENGTH_SHORT).show();
-                            addNumberPlus.dismiss();
-                        }
-
+                    if(task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "Successfully added phone number", Toast.LENGTH_SHORT).show();
+                        addNumberPlus.dismiss();
                     }
+
                 });
             }
         });
