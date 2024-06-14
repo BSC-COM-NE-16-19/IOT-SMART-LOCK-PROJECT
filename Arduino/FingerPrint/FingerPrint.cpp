@@ -326,6 +326,17 @@ uint8_t FingerPrint::getFingerprintEnroll() {
     delay(DELAY);
 
     int pinStatus = digitalRead(pin);
+    if(pinStatus == HIGH) {
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("   UNLOCKED");
+    delay(DELAY);
+    } else {
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("  LOCKED");
+    delay(DELAY);
+    }
     
     lcd.clear();
     lcd.backlight();
