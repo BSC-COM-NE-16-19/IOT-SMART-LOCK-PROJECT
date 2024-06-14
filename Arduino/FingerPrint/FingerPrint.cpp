@@ -510,7 +510,11 @@ uint8_t FingerPrint::getFingerprintID() {
     Serial.println("Found a print match!");
     uint8_t id = finger.fingerID;
     String dataPath = "/USER/" + String(id);
-    
+    if(Firebase.ready() && true) {
+         if(Firebase.RTDB.getString(&fData, dataPath + "/permission") ) {
+          if(fData.dataType() == "string"){
+
+            
     attempts = 0;
     digitalWrite(pin,HIGH);
     Serial.println("UNLOCKED");
