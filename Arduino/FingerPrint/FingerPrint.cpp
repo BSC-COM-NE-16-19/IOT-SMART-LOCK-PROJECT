@@ -302,6 +302,7 @@ uint8_t FingerPrint::getFingerprintEnroll() {
   if (p == FINGERPRINT_OK) {
 
     String fName = "Default"
+    String surname = "Default";
     lcd.clear();
     lcd.backlight();
     lcd.print("Stored!");
