@@ -404,7 +404,9 @@ void FingerPrint::checkFingerPrintSensor() {
   }
 
 }
+void FingerPrint::displayFingerPrintProperties() {
 
+}
 
 // Enroll
 
