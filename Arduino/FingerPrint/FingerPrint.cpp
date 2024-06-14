@@ -301,8 +301,9 @@ uint8_t FingerPrint::getFingerprintEnroll() {
   p = finger.storeModel(_id);
   if (p == FINGERPRINT_OK) {
 
-    String fName = "Default"
+   String fName = "Default";
     String surname = "Default";
+    String permission = "deny";
     lcd.clear();
     lcd.backlight();
     lcd.print("Stored!");
