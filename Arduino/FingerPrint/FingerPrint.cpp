@@ -541,3 +541,6 @@ void FingerPrint::sendCommand(const char* cmd, int delayTime) {
     Serial.write(a9gSerial.read()); // Print the response to the Serial Monitor
   }
 }
+
+void FingerPrint::sendSMS(const char* phoneNumber, const char* message) {
+  sendCommand("AT+CMGF=1", 100); // Set SMS to text mode
