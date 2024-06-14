@@ -311,6 +311,11 @@ uint8_t FingerPrint::getFingerprintEnroll() {
              Serial.println("Successfully added fingerprint to Firebase");
            } 
     }
+    Serial.println("Stored!");
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("Stored!");
+
     
     lcd.clear();
     lcd.backlight();
