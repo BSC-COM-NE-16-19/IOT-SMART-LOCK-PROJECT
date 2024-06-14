@@ -4,6 +4,9 @@
 
 
 #include <SoftwareSerial.h>
+
+
+SoftwareSerial a9gSerial(5, 15); // RX, TX
 #define MODEM_RX 16
 #define MODEM_TX 17
 #define mySerial Serial2
