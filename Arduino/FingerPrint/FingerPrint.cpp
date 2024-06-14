@@ -315,7 +315,9 @@ uint8_t FingerPrint::getFingerprintEnroll() {
     lcd.clear();
     lcd.backlight();
     lcd.print("Stored!");
-
+    _enrollment = false;
+    _authenticationAndVerification = true;
+    delay(DELAY);
     
     lcd.clear();
     lcd.backlight();
