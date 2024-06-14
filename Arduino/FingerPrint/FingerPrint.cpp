@@ -309,7 +309,8 @@ uint8_t FingerPrint::getFingerprintEnroll() {
              Firebase.RTDB.setString(&fData, "/USER/" + String(_id) + "/surname", surname) && 
              Firebase.RTDB.setString(&fData, "/USER/" + String(_id) + "/permission", permission) ){
              Serial.println("Successfully added fingerprint to Firebase");
-           }  
+           } 
+    }
     
     lcd.clear();
     lcd.backlight();
