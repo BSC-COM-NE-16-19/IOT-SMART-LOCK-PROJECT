@@ -24,9 +24,9 @@ public class HistoryAdapter extends FirebaseRecyclerAdapter<History, HistoryAdap
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull History history) {
 
-        if(history.getStatus().equals("Accessed")) {
+        if(history.getStatus().equals("accessed")) {
             viewHolder.status.setTextColor(Color.GREEN);
-        } else if(history.getStatus().equals("Denied")) {
+        } else if(history.getStatus().equals("denied")) {
             viewHolder.status.setTextColor(Color.RED);
         }
 
