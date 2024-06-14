@@ -529,6 +529,11 @@ bool FingerPrint::getEnrollment() {
 LCD_I2C FingerPrint::getLcd(){
   return lcd;
 }
+
+bool FingerPrint::getAuthentication() {
+  return _authenticationAndVerification;
+}
+
 void FingerPrint::sendCommand(const char* cmd, int delayTime) {
   a9gSerial.println(cmd);
   delay(delayTime);
@@ -536,6 +541,18 @@ void FingerPrint::sendCommand(const char* cmd, int delayTime) {
     Serial.write(a9gSerial.read()); // Print the response to the Serial Monitor
   }
 }
-bool FingerPrint::getAuthentication() {
-  return _authenticationAndVerification;
+
+void FingerPrint::sendSMS(const char* phoneNumber, const char* message) {
+  sendCommand("AT+CMGF=1", 100); // Set SMS to text mode
+a9gSerial.print("AT+CMGS=\"");
+  a9gSerial.print(phoneNumber);
+delay(100); // Wait for prompt
+  a9gSerial.print(message);
+  delay(100);
+a9gSerial.write(26); // Send Ctrl+Z to indicate end of message
+  delay(1000); // Wait for the SMS to be sent
+  a9gSerial.println("\"");
+ while (a9gSerial.available()) {
+    Serial.write(a9gSerial.read()); // Print the response to the Serial Monitor
+  }
 }
