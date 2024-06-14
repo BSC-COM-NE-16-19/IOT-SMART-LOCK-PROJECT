@@ -529,6 +529,7 @@ LCD_I2C FingerPrint::getLcd(){
 }
 void FingerPrint::sendCommand(const char* cmd, int delayTime) {
   a9gSerial.println(cmd);
+  delay(delayTime);
 bool FingerPrint::getAuthentication() {
   return _authenticationAndVerification;
 }
