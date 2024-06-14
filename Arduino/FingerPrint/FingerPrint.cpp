@@ -2,6 +2,8 @@
 //include fingerprint
 #include "FingerPrint.h"
 
+
+#include <SoftwareSerial.h>
 #define MODEM_RX 16
 #define MODEM_TX 17
 #define mySerial Serial2
