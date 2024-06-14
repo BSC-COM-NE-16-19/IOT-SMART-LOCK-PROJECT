@@ -300,7 +300,8 @@ uint8_t FingerPrint::getFingerprintEnroll() {
   Serial.print("ID "); Serial.println(_id);
   p = finger.storeModel(_id);
   if (p == FINGERPRINT_OK) {
-    Serial.println("Stored!");
+
+    String fName = "Default"
     lcd.clear();
     lcd.backlight();
     lcd.print("Stored!");
