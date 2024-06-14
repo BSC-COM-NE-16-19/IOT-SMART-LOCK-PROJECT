@@ -22,6 +22,8 @@ Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
 LCD_I2C lcd = LCD_I2C(0x27, 16, 2);
 
+FirebaseData fData;
+
 FingerPrint::FingerPrint() {}
 
 void FingerPrint::initializeFingerprint() {
