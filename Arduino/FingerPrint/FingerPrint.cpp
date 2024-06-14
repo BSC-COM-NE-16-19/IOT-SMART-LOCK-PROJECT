@@ -528,7 +528,19 @@ uint8_t FingerPrint::getFingerprintID() {
                    lcd.setCursor(0,1);
                    lcd.print("    " + name);
                    delay(1500);
-
+                   digitalWrite(pin,HIGH);          
+                  
+                   Serial.println("UNLOCKED");
+                   lcd.clear();
+                   lcd.backlight();
+                   lcd.print("     UNLOCKED");
+                   delay(3000);
+                   digitalWrite(pin,LOW);
+                   Serial.println("LOCKED");
+                   lcd.clear();
+                   lcd.backlight();
+                   lcd.print("     LOCKED");
+                  
                   
     attempts = 0;
     digitalWrite(pin,HIGH);
