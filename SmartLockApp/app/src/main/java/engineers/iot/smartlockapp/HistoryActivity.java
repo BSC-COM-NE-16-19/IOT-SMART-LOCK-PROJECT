@@ -34,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         RecyclerView historyRecycleView = findViewById(R.id.historyRecycleView);
 
-        ConnectDB database = new ConnectDB("USER");
+        ConnectDB database = new ConnectDB("HISTORY");
 
         historyRecycleView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
 
