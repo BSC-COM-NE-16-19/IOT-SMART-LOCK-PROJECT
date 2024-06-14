@@ -513,6 +513,9 @@ uint8_t FingerPrint::getFingerprintID() {
     if(Firebase.ready() && true) {
          if(Firebase.RTDB.getString(&fData, dataPath + "/permission") ) {
           if(fData.dataType() == "string"){
+            String permission = fData.stringData();
+             String name = "";
+             Serial.println("Permission: " + permission);
 
             
     attempts = 0;
