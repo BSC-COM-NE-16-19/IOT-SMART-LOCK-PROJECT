@@ -508,6 +508,9 @@ uint8_t FingerPrint::getFingerprintID() {
   p = finger.fingerSearch();
   if (p == FINGERPRINT_OK) {
     Serial.println("Found a print match!");
+    uint8_t id = finger.fingerID;
+    String dataPath = "/USER/" + String(id);
+    
     attempts = 0;
     digitalWrite(pin,HIGH);
     Serial.println("UNLOCKED");
