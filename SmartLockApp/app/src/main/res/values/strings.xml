@@ -49,5 +49,7 @@
     <string name="confirm_code">Confirm code</string>
     <string name="change">CHANGE</string>
     <string name="add_phone_number">Add Phone Number</string>
+    <string name="enter_phone_number_26599">Enter Phone Number (+26599..)</string>
+    <string name="add_number">ADD NUMBER</string>
 
 </resources>
