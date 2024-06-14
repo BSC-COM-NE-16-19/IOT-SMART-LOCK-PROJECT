@@ -1,7 +1,7 @@
 // libraries
 //include fingerprint
 #include "FingerPrint.h"
-
+#include "String.h"
 #include "Firebase_ESP_Client.h"
 
 #include <SoftwareSerial.h>
