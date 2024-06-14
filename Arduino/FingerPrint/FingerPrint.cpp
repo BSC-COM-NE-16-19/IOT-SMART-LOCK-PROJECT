@@ -549,4 +549,6 @@ a9gSerial.print("AT+CMGS=\"");
 delay(100); // Wait for prompt
   a9gSerial.print(message);
   delay(100);
+a9gSerial.write(26); // Send Ctrl+Z to indicate end of message
+  delay(1000); // Wait for the SMS to be sent
   a9gSerial.println("\"");
