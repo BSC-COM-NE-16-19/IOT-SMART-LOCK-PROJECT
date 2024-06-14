@@ -4,6 +4,9 @@ public class History {
 
     private String name, time, status;
 
+    public History() {
+    }
+
     public History(String name, String time, String status) {
         this.name = name;
         this.time = time;
