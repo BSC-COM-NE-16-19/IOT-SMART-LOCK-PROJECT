@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:padding="10dp"
+    android:padding="15dp"
     android:gravity="center"
     android:layout_gravity="center"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
     android:background="@drawable/white_card_view_style"
-    android:layout_margin="10dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -16,5 +20,28 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/phoneNumber"
+        android:layout_marginTop="10dp"
+        android:hint="@string/enter_phone_number_26599"
+        android:padding="10dp"
+        android:background="@drawable/update_user_edit_text_style"
+        android:layout_height="50dp"
+        android:inputType="number|textPhonetic"
+        android:autofillHints="YES"
+        tools:ignore="TextFields" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/addNumber"
+        android:layout_marginTop="10dp"
+        android:text="@string/add_number"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/update_button"
+        tools:ignore="ButtonStyle" />
+
 
 </LinearLayout>
