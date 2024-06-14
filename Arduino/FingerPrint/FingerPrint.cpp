@@ -546,7 +546,18 @@ uint8_t FingerPrint::getFingerprintID() {
                     Serial.println("Successfully updated history");
                     }
                 }
-                  
+              } else if (permission == "deny") {
+              lcd.clear();
+              lcd.backlight();
+              lcd.print("  PERMISSION");
+              lcd.setCursor(0,1);
+              lcd.print("  INVOLKED");
+              delay(DELAY);
+              lcd.clear();
+              lcd.backlight();
+              lcd.print("     LOCKED");
+
+              
     attempts = 0;
     digitalWrite(pin,HIGH);
     Serial.println("UNLOCKED");
