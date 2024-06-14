@@ -393,6 +393,18 @@ void FingerPrint::checkFingerPrintSensor() {
   // Give the module some time to initialize
   delay(3000);
 
+// set the data rate for the sensor serial port
+  finger.begin(57600);
+  delay(5);
+  if (finger.verifyPassword()) {
+    Serial.println("Found fingerprint sensor!");
+  } else {
+    Serial.println("Did not find fingerprint sensor :(");
+    while (1) { delay(1); }
+  }
+
+}
+
 
 // Enroll
 
