@@ -318,6 +318,10 @@ uint8_t FingerPrint::getFingerprintEnroll() {
     _enrollment = false;
     _authenticationAndVerification = true;
     delay(DELAY);
+    lcd.clear();
+    lcd.backlight();
+    lcd.print("CHECKING LOCK");
+
     
     lcd.clear();
     lcd.backlight();
