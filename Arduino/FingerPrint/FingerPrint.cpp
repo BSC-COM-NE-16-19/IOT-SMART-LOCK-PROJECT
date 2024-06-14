@@ -521,6 +521,13 @@ uint8_t FingerPrint::getFingerprintID() {
               if(Firebase.RTDB.getString(&fData, dataPath + "/fName") )
                 if(fData.dataType() == "string") {
                   name = fData.stringData();
+                    
+                  lcd.clear();
+                   lcd.backlight();
+                   lcd.print("     WELCOME");
+                   lcd.setCursor(0,1);
+                   lcd.print("    " + name);
+                   delay(1500);
 
                   
     attempts = 0;
